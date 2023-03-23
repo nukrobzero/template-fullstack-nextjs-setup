@@ -11,10 +11,16 @@ export default async function handler(
   if (!session) {
     return res.status(401).json({ message: "Unauthorized." });
   }
-
-  if (req.method === "GET") {
+  if (req.method === "POST") {
+    const { title } = req.body;
     try {
-      res.status(200).json({ name: "Nukrob" });
+      const response = await prisma.pages.create({
+        data: {
+          title: title,
+        },
+      });
+
+      res.status(200).json(response);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }

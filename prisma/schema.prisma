@@ -70,7 +70,7 @@ model Pages {
 model Subpages {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   pagesId   String?  @db.ObjectId
-  title     String
+  title     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Pages     Pages?   @relation(fields: [pagesId], references: [id], onDelete: Cascade)
