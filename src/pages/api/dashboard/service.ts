@@ -16,11 +16,33 @@ export default async function handler(
     try {
       const response = await prisma.pages.create({
         data: {
-          title: title,
+          title,
         },
       });
-
       res.status(200).json(response);
+    } catch (e) {
+      res.status(500).json({ message: "Something went wrong!" });
+    }
+  } else if (req.method === "PUT") {
+    const { id } = req.body;
+    const { title } = req.body;
+    try {
+      const response = await prisma.pages.update({
+        where: {
+          id,
+        },
+        data: {
+          title,
+        },
+      });
+      res.status(200).json(response);
+    } catch (e) {
+      res.status(500).json({ message: "Something went wrong!" });
+    }
+  } else if (req.method === "GET") {
+    try {
+      const getPage = await prisma.pages.findMany();
+      res.status(200).json(getPage);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }
