@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -184,11 +184,10 @@ export default function Service({ page }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await prisma.pages.findMany();
   const page = JSON.parse(JSON.stringify(res));
   return {
     props: { page },
-    revalidate: 1,
   };
 };
