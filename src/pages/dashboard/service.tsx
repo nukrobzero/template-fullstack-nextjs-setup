@@ -10,7 +10,7 @@ type Props = {
   page: any;
 };
 
-export default function service({ page }: Props) {
+export default function Service({ page }: Props) {
   const router = useRouter();
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
