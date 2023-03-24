@@ -189,6 +189,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const page = JSON.parse(JSON.stringify(res));
   return {
     props: { page },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
