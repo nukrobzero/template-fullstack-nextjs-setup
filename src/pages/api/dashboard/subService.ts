@@ -12,11 +12,12 @@ export default async function handler(
     return res.status(401).json({ message: "Unauthorized." });
   }
   if (req.method === "POST") {
-    const { title } = req.body;
+    const { pagesId, title } = req.body;
     const slug = title.replace(/\s+/g, "-").toLowerCase();
     try {
-      const response = await prisma.pages.create({
+      const response = await prisma.subpages.create({
         data: {
+          pagesId,
           title,
           slug,
         },
@@ -30,7 +31,7 @@ export default async function handler(
     const { title } = req.body;
     const slug = title.replace(/\s+/g, "-").toLowerCase();
     try {
-      const response = await prisma.pages.update({
+      const response = await prisma.subpages.update({
         where: {
           id,
         },
@@ -45,7 +46,7 @@ export default async function handler(
     }
   } else if (req.method === "GET") {
     try {
-      const getPage = await prisma.pages.findMany();
+      const getPage = await prisma.subpages.findMany();
       res.status(200).json(getPage);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });

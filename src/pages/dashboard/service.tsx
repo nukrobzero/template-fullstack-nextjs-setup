@@ -89,7 +89,7 @@ export default function Service({ page }: Props) {
                     scope="row"
                     className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
                   >
-                    <Link href={`/dashboard/service/${data.title}`}>
+                    <Link href={`/dashboard/service/${data.slug}`}>
                       {data.title}
                     </Link>
                   </td>
