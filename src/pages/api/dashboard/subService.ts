@@ -13,13 +13,13 @@ export default async function handler(
   }
   if (req.method === "POST") {
     const { pagesId, title } = req.body;
-    const slug = title.replace(/\s+/g, "-").toLowerCase() as string;
+    const slug = title.replace(/\s+/g, "-").toLowerCase();
     try {
       const response = await prisma.subpages.create({
         data: {
           pagesId: pagesId as string,
           title: title as string,
-          slug: slug,
+          slug: slug as string,
         },
       });
       res.status(200).json(response);
@@ -36,8 +36,8 @@ export default async function handler(
           id,
         },
         data: {
-          title,
-          slug,
+          title: title as string,
+          slug: slug as string,
         },
       });
       res.status(200).json(response);

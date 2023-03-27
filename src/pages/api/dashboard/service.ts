@@ -35,8 +35,8 @@ export default async function handler(
           id,
         },
         data: {
-          title,
-          slug,
+          title: title as string,
+          slug: slug as string,
         },
       });
       res.status(200).json(response);

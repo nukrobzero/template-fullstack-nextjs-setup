@@ -15,7 +15,7 @@ export default async function handler(
     const { id } = req.query;
     const deletePage = await prisma.subpages.delete({
       where: {
-        id: id?.toString(),
+        id: id as string,
       },
     });
     res.status(200).json(deletePage);
