@@ -13,12 +13,12 @@ export default async function handler(
   }
   if (req.method === "POST") {
     const { title } = req.body;
-    const slug = title.replace(/\s+/g, "-").toLowerCase() as string;
+    const slug = title.replace(/\s+/g, "-").toLowerCase();
     try {
       const response = await prisma.pages.create({
         data: {
           title: title as string,
-          slug: slug,
+          slug: slug as string,
         },
       });
       res.status(200).json(response);
