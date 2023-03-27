@@ -18,7 +18,7 @@ export default async function handler(
       const response = await prisma.pages.create({
         data: {
           title: title as string,
-          slug,
+          slug: slug,
         },
       });
       res.status(200).json(response);
