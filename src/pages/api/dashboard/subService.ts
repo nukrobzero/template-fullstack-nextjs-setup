@@ -19,7 +19,7 @@ export default async function handler(
         data: {
           pagesId: pagesId as string,
           title: title as string,
-          slug,
+          slug: slug,
         },
       });
       res.status(200).json(response);
