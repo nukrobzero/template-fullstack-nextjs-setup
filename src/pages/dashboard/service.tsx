@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { prisma } from "@/lib/prismadb";
+import Image from "next/image";
+import Editor from "@/components/editor";
 
 type Props = {
   page: any;
@@ -15,11 +17,16 @@ export default function Service({ page }: Props) {
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [showEditForm, setShowEditForm] = useState(false);
-  const [values, setValues] = useState({ id: "", title: "" });
-
   const [files, setFiles] = useState("");
+  const [content, setContent] = useState("");
+  const [values, setValues] = useState({
+    id: "",
+    title: "",
+    cover: "",
+    content: "",
+  });
 
-  const handleOnChange = (e: React.ChangeEvent) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value }: any = e.target;
     setValues((prevValues) => ({
       ...prevValues,
@@ -27,13 +34,19 @@ export default function Service({ page }: Props) {
     }));
   };
 
+  const handleContentChange = (content: any) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      content: content,
+    }));
+  };
+
   const handlePageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     if (!title || !files) return;
     const formData = new FormData();
     formData.set("title", title);
+    formData.set("content", content);
     formData.set("file", files[0]);
-    console.log(title);
-    console.log("formDataValue", formData);
     e.preventDefault();
 
     try {
@@ -45,14 +58,20 @@ export default function Service({ page }: Props) {
   };
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+    if (!values.title) return;
+    const formData = new FormData();
+    formData.set("id", values.id);
+    formData.set("title", values.title);
+    formData.set("cover", values.cover);
+    formData.set("content", values.content);
+    if (files?.[0]) {
+      formData.set("file", files[0]);
+    }
+
     e.preventDefault();
-    if (!values.title) return null;
+
     try {
-      const data = {
-        id: values.id,
-        title: values.title,
-      };
-      await axios.put("/api/dashboard/service", data);
+      await axios.put("/api/dashboard/service", formData);
       router.reload();
     } catch (e) {
       console.error(e);
@@ -151,26 +170,16 @@ export default function Service({ page }: Props) {
                 onClick={() => {
                   setShowForm(false),
                     setShowEditForm(false),
-                    setValues({ id: "", title: "" });
+                    setValues({ id: "", title: "", cover: "", content: "" });
                 }}
               />
             </div>
-
             <div className="mb-4">
-              <input
-                type="file"
-                onChange={(e: any) => setFiles(e.target.files)}
-              />
-              <label
-                htmlFor="title"
-                className="mb-2 block font-bold text-gray-700"
-              >
-                Title
-              </label>
               <input
                 type="text"
                 id="title"
                 name="title"
+                placeholder="Title"
                 value={showEditForm ? values.title : title}
                 onChange={
                   showEditForm
@@ -178,6 +187,29 @@ export default function Service({ page }: Props) {
                     : (e: any) => setTitle(e.target.value)
                 }
                 className="w-full rounded-lg border px-4 py-2"
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp"
+                onChange={(e: any) => setFiles(e.target.files)}
+              />
+              {showEditForm && (
+                <div>
+                  <Image
+                    src={`/${values.cover}`}
+                    width={300}
+                    height={300}
+                    alt={values.title}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="mb-4">
+              <Editor
+                value={showEditForm ? values.content : content}
+                onChange={showEditForm ? handleContentChange : setContent}
               />
             </div>
             <div className="text-right">

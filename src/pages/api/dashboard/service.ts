@@ -39,19 +39,21 @@ export default async function handler(
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
-      const { originalname, path } = req.file;
+      const { originalname, path, filename } = req.file;
       const parts = originalname.split(".");
       const ext = parts[parts.length - 1];
       const newPath = path + "." + ext;
+      const newPathDB = "uploads/" + filename + "." + ext;
+
       fs.renameSync(path, newPath);
-
-      const { title } = req.body;
+      const { title, content } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-
       const response = await prisma.pages.create({
         data: {
           title: title as string,
           slug: slug as string,
+          cover: newPathDB,
+          content: content as string,
         },
       });
       res.status(200).json(response);
@@ -59,9 +61,45 @@ export default async function handler(
       res.status(500).json({ message: "Something went wrong!" });
     }
   } else if (req.method === "PUT") {
-    const { id, title } = req.body;
-    const slug = title.replace(/\s+/g, "-").toLowerCase();
     try {
+      const multerUpload = multer({ dest: "public/uploads/" });
+      await runMiddleware(req, res, multerUpload.single("file"));
+      //check have new image
+      if (req.file) {
+        try {
+          const { originalname, path, filename } = req.file;
+          const parts = originalname.split(".");
+          const ext = parts[parts.length - 1];
+          const newPath = path + "." + ext;
+          const newPathDB = "uploads/" + filename + "." + ext;
+
+          fs.renameSync(path, newPath);
+          const { id, title, cover, content } = req.body;
+          const slug = title.replace(/\s+/g, "-").toLowerCase();
+
+          // Delete image from public/uploads folder
+          fs.unlinkSync(`public/${cover}`);
+
+          const response = await prisma.pages.update({
+            where: {
+              id,
+            },
+            data: {
+              title: title as string,
+              slug: slug as string,
+              cover: newPathDB,
+              content: content as string,
+            },
+          });
+          return res.status(200).json(response);
+        } catch (error) {
+          console.log(error);
+          return res.status(500).json({ message: "Something went wrong." });
+        }
+      }
+      //if not have new image
+      const { id, title, content } = req.body;
+      const slug = title.replace(/\s+/g, "-").toLowerCase();
       const response = await prisma.pages.update({
         where: {
           id,
@@ -69,6 +107,7 @@ export default async function handler(
         data: {
           title: title as string,
           slug: slug as string,
+          content: content as string,
         },
       });
       res.status(200).json(response);

@@ -63,6 +63,8 @@ model Pages {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   slug      String
+  cover     String
+  content   String?
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   subpages  Subpages[]
@@ -73,6 +75,8 @@ model Subpages {
   pagesId   String?  @db.ObjectId
   title     String
   slug      String
+  cover     String
+  content   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Pages     Pages?   @relation(fields: [pagesId], references: [id], onDelete: Cascade)
