@@ -1,9 +1,33 @@
 import { getSession } from "next-auth/react";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prismadb";
+import multer from "multer";
+import fs from "fs";
+
+function runMiddleware(
+  req: NextApiRequest & { [key: string]: any },
+  res: NextApiResponse,
+  fn: (...args: any[]) => void
+): Promise<any> {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 export default async function handler(
-  req: NextApiRequest,
+  req: NextApiRequest & { [key: string]: any },
   res: NextApiResponse
 ) {
   const session = await getSession({ req });
@@ -12,9 +36,18 @@ export default async function handler(
     return res.status(401).json({ message: "Unauthorized." });
   }
   if (req.method === "POST") {
-    const { title } = req.body;
-    const slug = title.replace(/\s+/g, "-").toLowerCase();
     try {
+      const multerUpload = multer({ dest: "public/uploads/" });
+      await runMiddleware(req, res, multerUpload.single("file"));
+      const { originalname, path } = req.file;
+      const parts = originalname.split(".");
+      const ext = parts[parts.length - 1];
+      const newPath = path + "." + ext;
+      fs.renameSync(path, newPath);
+
+      const { title } = req.body;
+      const slug = title.replace(/\s+/g, "-").toLowerCase();
+
       const response = await prisma.pages.create({
         data: {
           title: title as string,
@@ -26,8 +59,7 @@ export default async function handler(
       res.status(500).json({ message: "Something went wrong!" });
     }
   } else if (req.method === "PUT") {
-    const { id } = req.body;
-    const { title } = req.body;
+    const { id, title } = req.body;
     const slug = title.replace(/\s+/g, "-").toLowerCase();
     try {
       const response = await prisma.pages.update({

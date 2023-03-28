@@ -17,6 +17,8 @@ export default function Service({ page }: Props) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [values, setValues] = useState({ id: "", title: "" });
 
+  const [files, setFiles] = useState("");
+
   const handleOnChange = (e: React.ChangeEvent) => {
     const { name, value }: any = e.target;
     setValues((prevValues) => ({
@@ -26,13 +28,19 @@ export default function Service({ page }: Props) {
   };
 
   const handlePageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    if (!title || !files) return;
+    const formData = new FormData();
+    formData.set("title", title);
+    formData.set("file", files[0]);
+    console.log(title);
+    console.log("formDataValue", formData);
     e.preventDefault();
-    if (!title) return null;
+
     try {
-      await axios.post("/api/dashboard/service", { title });
+      await axios.post("/api/dashboard/service", formData);
       router.reload();
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -149,6 +157,10 @@ export default function Service({ page }: Props) {
             </div>
 
             <div className="mb-4">
+              <input
+                type="file"
+                onChange={(e: any) => setFiles(e.target.files)}
+              />
               <label
                 htmlFor="title"
                 className="mb-2 block font-bold text-gray-700"
