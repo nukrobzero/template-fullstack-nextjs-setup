@@ -16,16 +16,30 @@ export default async function handler(
     const { id } = req.query;
     const page = await prisma.pages.findUnique({
       where: { id: id as string },
+      include: {
+        subpages: true,
+      },
     });
     if (!page) {
       return res.status(404).json({ message: "Page not found." });
     }
     const { cover } = page;
+
     // Delete image from public/uploads folder
     fs.unlinkSync(`public/${cover}`);
+
+    // Delete subpages and their images
+    for (const subpage of page.subpages) {
+      const { cover: subpageCover } = subpage;
+      fs.unlinkSync(`public/${subpageCover}`);
+      await prisma.subpages.delete({
+        where: { id: subpage.id },
+      });
+    }
     const deletePage = await prisma.pages.delete({
       where: { id: id as string },
     });
+
     res.status(200).json(deletePage);
   }
   // HTTP method not supported!

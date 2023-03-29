@@ -87,7 +87,7 @@ export default async function handler(
             data: {
               title: title as string,
               slug: slug as string,
-              cover: newPathDB,
+              cover: newPathDB as string,
               content: content as string,
             },
           });
