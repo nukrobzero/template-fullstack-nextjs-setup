@@ -64,15 +64,19 @@ export default async function handler(
           res.status(500).json({ message: "Something went wrong!" });
         }
       } else {
-        const response = await prisma.pages.create({
-          data: {
-            title: title as string,
-            slug: slug as string,
-            cover: "",
-            content: content as string,
-          },
-        });
-        res.status(200).json(response);
+        try {
+          const response = await prisma.pages.create({
+            data: {
+              title: title as string,
+              slug: slug as string,
+              cover: "",
+              content: content as string,
+            },
+          });
+          res.status(200).json(response);
+        } catch (e) {
+          res.status(500).json({ message: "Something went wrong!" });
+        }
       }
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
