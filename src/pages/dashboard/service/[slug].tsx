@@ -7,7 +7,6 @@ type Props = {
 };
 
 export default function SubServicePage({ page }: Props) {
-  console.log(page);
   return (
     <div>
       <SubserviceForm

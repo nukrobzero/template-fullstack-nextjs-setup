@@ -11,10 +11,7 @@ export default function Navbar() {
   return (
     <nav className="justify-items-centers mx-auto flex h-[80px] max-w-7xl items-center justify-between">
       <div>
-        <Link href={`/home`}>logo</Link>
-        <Link href={`/dashboard`} className="ml-5">
-          dashboard
-        </Link>
+        <Link href={`/`}>logo</Link>
       </div>
       <div>
         <ul className="flex cursor-pointer flex-row items-center justify-between gap-4">
@@ -23,92 +20,72 @@ export default function Navbar() {
             onMouseLeave={() => setActiveMenu1(false)}
             className="link link-underline link-underline-black"
           >
-            menu1
+            <Link href={`/about`}>About</Link>
             <span className=" inline-block">
               {activeMenu1 === false ? <IoIosArrowDown /> : <IoIosArrowUp />}
             </span>
             {activeMenu1 && (
               <ul className="absolute rounded-md bg-[#1d252b] p-2 text-white shadow-lg">
                 <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu1
+                  <Link href={`/about/out-value`}>Out Value</Link>
                 </li>
                 <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu2
+                  <Link href={`/about/partner`}>Partner</Link>
                 </li>
                 <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu3
+                  <Link href={`/about/contribution`}>Contribution</Link>
                 </li>
               </ul>
             )}
+          </li>
+          <li
+            className="link link-underline link-underline-black"
+          >
+            <Link href={`/#`}>Products</Link>
           </li>
           <li
             onMouseEnter={() => setActiveMenu2(true)}
             onMouseLeave={() => setActiveMenu2(false)}
             className="link link-underline link-underline-black"
           >
-            menu2
+            <Link href={`/services`}>Services</Link>
             <span className=" inline-block">
               {activeMenu2 === false ? <IoIosArrowDown /> : <IoIosArrowUp />}
             </span>
             {activeMenu2 && (
               <ul className="absolute rounded-md bg-[#1d252b] p-2 text-white shadow-lg">
                 <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu1
+                <Link href={`/services/machinning`}>Machinning</Link>
                 </li>
                 <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu2
+                <Link href={`/service/measuring`}>Measuring</Link>
                 </li>
                 <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu3
+                <Link href={`/services/automation`}>Automation</Link>
+                </li>
+                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
+                <Link href={`/services/iot`}>IoT</Link>
+                </li>
+                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
+                <Link href={`/services/genaral`}>Genaral</Link>
                 </li>
               </ul>
             )}
           </li>
           <li
-            onMouseEnter={() => setActiveMenu3(true)}
-            onMouseLeave={() => setActiveMenu3(false)}
             className="link link-underline link-underline-black"
           >
-            menu3
-            <span className=" inline-block">
-              {activeMenu3 === false ? <IoIosArrowDown /> : <IoIosArrowUp />}
-            </span>
-            {activeMenu3 && (
-              <ul className="absolute rounded-md bg-[#1d252b] p-2 text-white shadow-lg">
-                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu1
-                </li>
-                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu2
-                </li>
-                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu3
-                </li>
-              </ul>
-            )}
+            <Link href={`/blog`}>Blog</Link>
           </li>
           <li
-            onMouseEnter={() => setActiveMenu4(true)}
-            onMouseLeave={() => setActiveMenu4(false)}
             className="link link-underline link-underline-black"
           >
-            menu4
-            <span className=" inline-block">
-              {activeMenu4 === false ? <IoIosArrowDown /> : <IoIosArrowUp />}
-            </span>
-            {activeMenu4 && (
-              <ul className="absolute rounded-md bg-[#1d252b] p-2 text-white shadow-lg">
-                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu1
-                </li>
-                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu2
-                </li>
-                <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                  submenu3
-                </li>
-              </ul>
-            )}
+            <Link href={`/careers`}>Careers</Link>
+          </li>
+          <li
+            className="link link-underline link-underline-black"
+          >
+            <Link href={`/contact-us`}>Contact Us</Link>
           </li>
         </ul>
       </div>
