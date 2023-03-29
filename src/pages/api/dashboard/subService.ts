@@ -39,25 +39,43 @@ export default async function handler(
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
-      const { originalname, path, filename } = req.file;
-      const parts = originalname.split(".");
-      const ext = parts[parts.length - 1];
-      const newPath = path + "." + ext;
-      const newPathDB = "uploads/" + filename + "." + ext;
-
-      fs.renameSync(path, newPath);
       const { pagesId, title, content } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      const response = await prisma.subpages.create({
-        data: {
-          pagesId: pagesId as string,
-          title: title as string,
-          slug: slug as string,
-          cover: newPathDB,
-          content: content as string,
-        },
-      });
-      res.status(200).json(response);
+      if (req.file) {
+        try {
+          const { originalname, path, filename } = req.file;
+          const parts = originalname.split(".");
+          const ext = parts[parts.length - 1];
+          const newPath = path + "." + ext;
+          const newPathDB = "uploads/" + filename + "." + ext;
+
+          fs.renameSync(path, newPath);
+
+          const response = await prisma.subpages.create({
+            data: {
+              pagesId: pagesId as string,
+              title: title as string,
+              slug: slug as string,
+              cover: newPathDB,
+              content: content as string,
+            },
+          });
+          res.status(200).json(response);
+        } catch (e) {
+          res.status(500).json({ message: "Something went wrong!" });
+        }
+      } else {
+        const response = await prisma.subpages.create({
+          data: {
+            pagesId: pagesId as string,
+            title: title as string,
+            slug: slug as string,
+            cover: "",
+            content: content as string,
+          },
+        });
+        res.status(200).json(response);
+      }
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }

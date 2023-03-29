@@ -41,12 +41,14 @@ export default function SubserviceForm({ page, apiurl, titlePage }: Props) {
   };
 
   const handlePageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    if (!title || !files) return;
+    if (!title) return;
     const formData = new FormData();
     formData.set("pagesId", page.id);
     formData.set("title", title);
     formData.set("content", content);
-    formData.set("file", files[0]);
+    if (files?.[0]) {
+      formData.set("file", files[0]);
+    }
     e.preventDefault();
 
     try {
@@ -179,6 +181,7 @@ export default function SubserviceForm({ page, apiurl, titlePage }: Props) {
                 name="title"
                 placeholder="Title"
                 value={showEditForm ? values.title : title}
+                required
                 onChange={
                   showEditForm
                     ? handleOnChange
