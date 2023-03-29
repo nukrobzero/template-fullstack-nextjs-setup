@@ -193,6 +193,7 @@ export default function ServiceForm({ page, apiurl, titlePage }: Props) {
               <input
                 type="file"
                 accept=".jpg,.jpeg,.png,.webp"
+                required
                 onChange={(e: any) => setFiles(e.target.files)}
               />
               {showEditForm && (

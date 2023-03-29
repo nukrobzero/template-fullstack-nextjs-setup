@@ -12,15 +12,27 @@ interface Props {
 export default function Editor({ value, onChange }: Props) {
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ size: ["small", false, "large", "huge"] }],
+      [{font:[]}],
+      [
+        "bold",
+        "italic",
+        "underline",
+        "strike",
+        "blockquote",
+        { color: [] },
+        { background: [] },
+      ],
       [
         { list: "ordered" },
         { list: "bullet" },
         { indent: "-1" },
         { indent: "+1" },
+        { align: [] },
       ],
-      ["link", "image"],
+      ["image", "link", "video", "formula"],
+      ["code-block"],
       ["clean"],
     ],
   };
