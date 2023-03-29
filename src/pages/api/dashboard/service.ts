@@ -39,24 +39,41 @@ export default async function handler(
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
-      const { originalname, path, filename } = req.file;
-      const parts = originalname.split(".");
-      const ext = parts[parts.length - 1];
-      const newPath = path + "." + ext;
-      const newPathDB = "uploads/" + filename + "." + ext;
-
-      fs.renameSync(path, newPath);
       const { title, content } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      const response = await prisma.pages.create({
-        data: {
-          title: title as string,
-          slug: slug as string,
-          cover: newPathDB as string,
-          content: content as string,
-        },
-      });
-      res.status(200).json(response);
+      if (req.file) {
+        try {
+          const { originalname, path, filename } = req.file;
+          const parts = originalname.split(".");
+          const ext = parts[parts.length - 1];
+          const newPath = path + "." + ext;
+          const newPathDB = "uploads/" + filename + "." + ext;
+
+          fs.renameSync(path, newPath);
+
+          const response = await prisma.pages.create({
+            data: {
+              title: title as string,
+              slug: slug as string,
+              cover: newPathDB as string,
+              content: content as string,
+            },
+          });
+          res.status(200).json(response);
+        } catch (e) {
+          res.status(500).json({ message: "Something went wrong!" });
+        }
+      } else {
+        const response = await prisma.pages.create({
+          data: {
+            title: title as string,
+            slug: slug as string,
+            cover: "",
+            content: content as string,
+          },
+        });
+        res.status(200).json(response);
+      }
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }
@@ -64,6 +81,8 @@ export default async function handler(
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
+      const { id, title, cover, content } = req.body;
+      const slug = title.replace(/\s+/g, "-").toLowerCase();
       //check have new image
       if (req.file) {
         try {
@@ -74,8 +93,6 @@ export default async function handler(
           const newPathDB = "uploads/" + filename + "." + ext;
 
           fs.renameSync(path, newPath);
-          const { id, title, cover, content } = req.body;
-          const slug = title.replace(/\s+/g, "-").toLowerCase();
 
           // Delete image from public/uploads folder
           fs.unlinkSync(`public/${cover}`);
@@ -98,8 +115,6 @@ export default async function handler(
         }
       }
       //if not have new image
-      const { id, title, content } = req.body;
-      const slug = title.replace(/\s+/g, "-").toLowerCase();
       const response = await prisma.pages.update({
         where: {
           id,

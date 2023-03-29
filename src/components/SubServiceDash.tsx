@@ -194,13 +194,22 @@ export default function SubserviceForm({ page, apiurl, titlePage }: Props) {
                 onChange={(e: any) => setFiles(e.target.files)}
               />
               {showEditForm && (
-                <div>
-                  <Image
-                    src={`/${values.cover}`}
-                    width={300}
-                    height={300}
-                    alt={values.title}
-                  />
+                <div className="mt-4">
+                  {values.cover === "" ? (
+                    <Image
+                      src={`/No_Image_Available.jpg`}
+                      width={300}
+                      height={300}
+                      alt="No-Image-Available"
+                    />
+                  ) : (
+                    <Image
+                      src={`/${values.cover}`}
+                      width={300}
+                      height={300}
+                      alt={values.title}
+                    />
+                  )}
                 </div>
               )}
             </div>

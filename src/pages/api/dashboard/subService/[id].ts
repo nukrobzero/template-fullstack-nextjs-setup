@@ -22,7 +22,8 @@ export default async function handler(
     }
     const { cover } = page;
     // Delete image from public/uploads folder
-    fs.unlinkSync(`public/${cover}`);
+    cover === "" ? "" : fs.unlinkSync(`public/${cover}`);
+    
     const deletePage = await prisma.subpages.delete({
       where: { id: id as string },
     });

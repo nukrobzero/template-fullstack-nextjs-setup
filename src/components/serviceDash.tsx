@@ -42,11 +42,13 @@ export default function ServiceForm({ page, apiurl, titlePage }: Props) {
   };
 
   const handlePageSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    if (!title || !files) return;
+    if (!title) return;
     const formData = new FormData();
     formData.set("title", title);
     formData.set("content", content);
-    formData.set("file", files[0]);
+    if (files?.[0]) {
+      formData.set("file", files[0]);
+    }
     e.preventDefault();
 
     try {
@@ -181,6 +183,7 @@ export default function ServiceForm({ page, apiurl, titlePage }: Props) {
                 name="title"
                 placeholder="Title"
                 value={showEditForm ? values.title : title}
+                required
                 onChange={
                   showEditForm
                     ? handleOnChange
@@ -193,17 +196,25 @@ export default function ServiceForm({ page, apiurl, titlePage }: Props) {
               <input
                 type="file"
                 accept=".jpg,.jpeg,.png,.webp"
-                required
                 onChange={(e: any) => setFiles(e.target.files)}
               />
               {showEditForm && (
-                <div>
-                  <Image
-                    src={`/${values.cover}`}
-                    width={300}
-                    height={300}
-                    alt={values.title}
-                  />
+                <div className="mt-4">
+                  {values.cover === "" ? (
+                    <Image
+                      src={`/No_Image_Available.jpg`}
+                      width={300}
+                      height={300}
+                      alt="No-Image-Available"
+                    />
+                  ) : (
+                    <Image
+                      src={`/${values.cover}`}
+                      width={300}
+                      height={300}
+                      alt={values.title}
+                    />
+                  )}
                 </div>
               )}
             </div>
