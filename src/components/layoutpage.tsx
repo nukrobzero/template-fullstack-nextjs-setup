@@ -1,6 +1,6 @@
 export default function Sections({ children }: { children: any }) {
   return (
-    <div className="mx-auto flex h-screen max-w-7xl items-center justify-items-center">
+    <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { prisma } from "@/lib/prismadb";
-import ServiceForm from "@/components/serviceDash";
+import ServiceForm from "@/components/backend/serviceDash";
 
 type Props = {
   page: any;

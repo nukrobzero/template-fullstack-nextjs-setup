@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { prisma } from "@/lib/prismadb";
-import SubserviceForm from "@/components/SubServiceDash";
+import SubserviceForm from "@/components/backend/SubServiceDash";
 
 type Props = {
   page: any;

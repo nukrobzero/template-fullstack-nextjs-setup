@@ -1,7 +1,7 @@
 import Headers from "@/components/headerAllpage";
-import Hero from "@/components/homepage/hero";
-import ServiceHero from "@/components/homepage/services";
-import Layout from "@/components/layout/layout";
+import Hero from "@/components/frontend/homepage/hero";
+import ServiceHero from "@/components/frontend/homepage/services";
+import Layout from "@/components/frontend/layout/layout";
 
 export default function Home() {
   return (

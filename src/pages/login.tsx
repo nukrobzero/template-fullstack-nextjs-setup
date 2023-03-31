@@ -15,7 +15,7 @@ export default function Login() {
             <Link href={`/dashboard`} className="hover:text-gray-500">
               Dashboard
             </Link>
-            <Link href={`/home`} className="hover:text-orange-400">
+            <Link href={`/`} className="hover:text-orange-400">
               Home Page
             </Link>
           </div>
@@ -35,7 +35,11 @@ export default function Login() {
         Not signed in <br />
         <button
           className="mt-4 rounded-tl-lg bg-green-400 rounded-br-lg px-5 py-2 hover:bg-green-600"
-          onClick={() => signIn()}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/dashboard",
+            })
+          }
         >
           Sign in
         </button>

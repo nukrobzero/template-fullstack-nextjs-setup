@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { ImageResize } from "quill-image-resize-module-ts";
 import "react-quill/dist/quill.snow.css";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });

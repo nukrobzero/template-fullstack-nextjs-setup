@@ -14,6 +14,9 @@ export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    maxAge: 3600,
+  },
 };
 
 export default NextAuth(authOptions);

@@ -1,12 +1,11 @@
-import Link from "next/link";
+import LayoutAdmin from "@/components/backend/layout/layout";
 
-export default function Home() {
+export default function Dashboard() {
   return (
-    <div>
-      <h1>Hi this Dashboard</h1>
+    <LayoutAdmin>
       <div>
-        <Link href={`dashboard/service`}>Service</Link>
+        <h1>Hi this Dashboard</h1>
       </div>
-    </div>
+    </LayoutAdmin>
   );
 }

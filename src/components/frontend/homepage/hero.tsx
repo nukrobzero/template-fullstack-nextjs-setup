@@ -1,23 +1,25 @@
 import Link from "next/link";
+import Sections from "../../layoutpage";
+
 
 export default function Hero() {
   return (
-    <div
-      className="h-screen bg-cover bg-fixed bg-no-repeat text-white"
+    <section
+      className="h-screen bg-cover bg-fixed bg-no-repeat text-white mt-[80px]"
       style={{
-        backgroundImage:
-          "url('/home/hero-bg.jpeg'), radial-gradient(circle at 0% 100%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
+        backgroundImage: "url('/home/hero-bg.jpeg')",
+        backgroundColor: "#6F6F6F",
         backgroundBlendMode: "multiply",
       }}
     >
-      <div className="mx-auto flex h-screen max-w-7xl items-center justify-items-center">
-        <div className="container">
-          <h2 className="text-5xl font-bold">
+      <Sections>
+        <div className="container flex flex-col h-screen justify-center text-start">
+          <h2 className="lg:text-5xl md:text-5xl text-3xl font-bold">
             Business Hand in Hand
             <br />
             <span className="font-light">with new Technology</span>
           </h2>
-          <p className="mt-3 w-[530px]">
+          <p className="mt-3 lg:w-[530px] md:w-[530px]">
             Renergy accreditation standards. Members are proactive in both
             undertaking and applying animal welfare scientific research,
             contribute
@@ -32,7 +34,7 @@ export default function Hero() {
           </div>
         </div>
         <div className=" container"></div>
-      </div>
-    </div>
+      </Sections>
+    </section>
   );
 }

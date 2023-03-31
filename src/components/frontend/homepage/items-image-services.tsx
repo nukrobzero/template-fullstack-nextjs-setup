@@ -16,7 +16,7 @@ export default function ItemsServices({
   title,
 }: Props) {
   return (
-    <div className=" items-center">
+    <div className="flex flex-col justify-center items-center">
       <Image
         src={src}
         width={width}
