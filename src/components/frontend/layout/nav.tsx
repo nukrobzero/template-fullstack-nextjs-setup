@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
+import Image from "next/image";
 
 export default function Navbar() {
   const [activeMenu1, setActiveMenu1] = useState(false);
@@ -21,9 +22,11 @@ export default function Navbar() {
 
   return (
     <div className=" bg-white fixed top-0 w-full z-20 left-0 border-b">
-      <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-[80px]">
+      <nav className="flex flex-wrap items-center justify-between mx-auto p-4 h-[80px]">
         <div>
-          <Link href={`/`}>logo</Link>
+          <Link href={`/`}>
+            <Image src={`/logo.png`} width={68} height={80} alt="logo" />
+          </Link>
         </div>
 
         {/* Mobile Menu */}
@@ -142,32 +145,36 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden w-full md:block md:w-auto">
-          <ul className="flex cursor-pointer flex-row items-center justify-between gap-4">
+          <ul className="flex cursor-pointer flex-row items-center justify-between gap-24">
+            <li className="link link-underline link-underline-black">
+              <Link href={`/about`}>About Us</Link>
+            </li>
             <li
               onMouseEnter={() => setActiveMenu1(true)}
               onMouseLeave={() => setActiveMenu1(false)}
               className="link link-underline link-underline-black"
             >
-              <Link href={`/about`}>About</Link>
+              <Link href={`/#`}>Products</Link>
               <span className=" inline-block">
-                {activeMenu1 === false ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                {activeMenu1 === false ? (
+                  <IoIosArrowDown color="#0083CA" />
+                ) : (
+                  <IoIosArrowUp color="#0083CA" />
+                )}
               </span>
               {activeMenu1 && (
                 <ul className="absolute rounded-md bg-[#1d252b] p-2 text-white shadow-lg">
                   <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                    <Link href={`/about/out-value`}>Out Value</Link>
+                    <Link href={`/#`}>Sub Products1</Link>
                   </li>
                   <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                    <Link href={`/about/partner`}>Partner</Link>
+                    <Link href={`/#`}>Sub Products2</Link>
                   </li>
                   <li className="link link-underline link-underline-black hover:text-[#8d9296]">
-                    <Link href={`/about/contribution`}>Contribution</Link>
+                    <Link href={`/#`}>Sub Products3</Link>
                   </li>
                 </ul>
               )}
-            </li>
-            <li className="link link-underline link-underline-black">
-              <Link href={`/#`}>Products</Link>
             </li>
             <li
               onMouseEnter={() => setActiveMenu2(true)}
@@ -176,7 +183,11 @@ export default function Navbar() {
             >
               <Link href={`/services`}>Services</Link>
               <span className=" inline-block">
-                {activeMenu2 === false ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                {activeMenu2 === false ? (
+                  <IoIosArrowDown color="#0083CA" />
+                ) : (
+                  <IoIosArrowUp color="#0083CA" />
+                )}
               </span>
               {activeMenu2 && (
                 <ul className="absolute rounded-md bg-[#1d252b] p-2 text-white shadow-lg">
@@ -208,6 +219,14 @@ export default function Navbar() {
               <Link href={`/contact-us`}>Contact Us</Link>
             </li>
           </ul>
+        </div>
+        <div>
+          <Link
+            href={`#`}
+            className="border border-[#0083CA] px-10 py-3 text-[#0083CA] font-bold mr-10"
+          >
+            Contact Us
+          </Link>
         </div>
       </nav>
     </div>
