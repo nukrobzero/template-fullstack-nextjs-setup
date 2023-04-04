@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -21,7 +22,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className=" bg-white fixed top-0 w-full z-20 left-0 border-b">
+    <div className=" bg-white fixed top-0 w-full z-50 left-0 border-b">
       <nav className="flex flex-wrap items-center justify-between mx-auto p-4 h-[80px]">
         <div>
           <Link href={`/`}>
@@ -39,19 +40,7 @@ export default function Navbar() {
           aria-expanded="false"
         >
           <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
+          <GiHamburgerMenu size={30} />
         </button>
         {menuOpen && (
           <>
@@ -145,7 +134,7 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden w-full md:block md:w-auto">
-          <ul className="flex cursor-pointer flex-row items-center justify-between gap-24">
+          <ul className="flex cursor-pointer flex-row items-center justify-between lg:gap-24 md:gap-8  gap-4">
             <li className="link link-underline link-underline-black">
               <Link href={`/about`}>About Us</Link>
             </li>
@@ -213,17 +202,14 @@ export default function Navbar() {
               <Link href={`/blog`}>Blog</Link>
             </li>
             <li className="link link-underline link-underline-black">
-              <Link href={`/careers`}>Careers</Link>
-            </li>
-            <li className="link link-underline link-underline-black">
-              <Link href={`/contact-us`}>Contact Us</Link>
+              <Link href={`/careers`}>Join US</Link>
             </li>
           </ul>
         </div>
-        <div>
+        <div className="hidden w-full md:block md:w-auto">
           <Link
-            href={`#`}
-            className="border border-[#0083CA] px-10 py-3 text-[#0083CA] font-bold mr-10"
+            href={`/contact-us`}
+            className="border border-[#0083CA] px-10 py-3 text-[#0083CA] font-bold hover:text-white hover:bg-[#003F73]"
           >
             Contact Us
           </Link>
