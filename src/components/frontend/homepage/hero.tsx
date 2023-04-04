@@ -50,12 +50,19 @@ export default function Hero() {
         {slideImages.map((slideImages, idx) => (
           <div
             key={idx}
-            className="slide-container max-h-[720px] bg-cover bg-fixed bg-no-repeat object-cover text-white"
+            className="slide-container max-h-[720px] text-white"
             style={{
-              backgroundImage: `url(${slideImages.url}),linear-gradient(90deg, rgba(0, 0, 0, 0.6) 38.4%, rgba(58, 58, 58, 0.329522) 59.17%, rgba(58, 58, 58, 0) 77.57%)`,
+              backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.6) 38.4%, rgba(58, 58, 58, 0.329522) 59.17%, rgba(58, 58, 58, 0) 77.57%)`,
               backgroundBlendMode: "multiply",
             }}
           >
+            <Image
+              src={slideImages.url}
+              width={1920}
+              height={1080}
+              alt={slideImages.caption}
+              className=" absolute object-cover bg-cover bg-fixed bg-no-repeat -z-10"
+            />
             <Sections>
               <div className="container flex flex-col h-[720px] justify-center text-start">
                 <h2 className="lg:text-5xl md:text-5xl text-3xl font-bold">
