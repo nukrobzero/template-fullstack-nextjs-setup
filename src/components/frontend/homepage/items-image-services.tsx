@@ -16,7 +16,7 @@ export default function ItemsServices({
   title,
 }: Props) {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center hover:text-[#0083CA] cursor-pointer">
       <Image
         src={src}
         width={width}

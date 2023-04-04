@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-color1 {
+    @apply text-[#0083CA]
+}

@@ -45,7 +45,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="h-screen">
+    <div className="max-h-[720px]">
       <Slide ref={ref} {...properties}>
         {slideImages.map((slideImages, idx) => (
           <div
@@ -139,6 +139,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
