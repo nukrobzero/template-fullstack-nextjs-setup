@@ -1,7 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 .text-color1 {
-    @apply text-[#0083CA]
+  @apply text-[#0083CA];
 }
+
+@screen xl {
+  .bg-gradient-simtec {
+    background: linear-gradient(
+      90deg,
+      #ffffff 50%,
+      rgba(255, 255, 255, 0.616742) 64.28%,
+      rgba(255, 255, 255, 0) 88.61%
+    );
+    background-blend-mode: multiply;
+  }
+}
+
+

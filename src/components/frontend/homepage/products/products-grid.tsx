@@ -6,8 +6,6 @@ interface PostGridsProps {
   title: string;
   src: string;
   alt: string;
-  srcImg: string;
-  altImg: string;
   titleDetail: string;
   details: string;
 }
@@ -16,45 +14,51 @@ export default function PostGrids({
   title,
   src,
   alt,
-  srcImg,
-  altImg,
   titleDetail,
   details,
 }: PostGridsProps) {
   return (
-      <div className="w-[250px] h-[300px] text-white">
-        <div
-          className="w-[250px] h-[150px]"
-          style={{
-            background: "rgba(0, 86, 133, 0.6)",
-            backgroundBlendMode: "multiply",
-          }}
-        >
-          <h1 className="absolute uppercase z-10 text-sm font-bold p-4">
-            {title}
-          </h1>
-          <h1 className="absolute pt-[120px] px-4">
-            <Image src={src} width={40} height={30} alt={alt} />
-          </h1>
-          <Image
-            src={srcImg}
-            width={250}
-            height={300}
-            alt={altImg}
-            className=" absolute object-cover bg-cover bg-fixed bg-no-repeat -z-10"
-          />
+    <div className="xl:w-[250px] xl:h-[300px] md:w-[250px] md:h-[300px]  sm:w-[250px] sm:h-[300px] w-[350px] h-[350px] text-white">
+      <div
+        className="xl:w-[250px] xl:h-[150px] md:w-[250px] md:h-[150px] sm:w-[250px] sm:h-[150px] w-[350px] h-[200px]"
+        style={{
+          background: "rgba(0, 86, 133, 0.6)",
+          backgroundBlendMode: "multiply",
+        }}
+      >
+        <h1 className="absolute uppercase z-10 text-sm font-bold p-4 cursor-default">
+          {title}
+        </h1>
+        <div className="absolute pt-[120px] px-4">
+          <svg
+            width="31"
+            height="18"
+            viewBox="0 0 31 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.665483 0.545454H5.21662L10.0234 12.2727H10.228L15.0348 0.545454H19.5859V18H16.0064V6.6392H15.8615L11.3445 17.9148H8.90696L4.38991 6.59659H4.24503V18H0.665483V0.545454ZM30.1179 0.545454V18H26.4276V4.04829H26.3253L22.3281 6.55398V3.28125L26.6491 0.545454H30.1179Z"
+              fill="white"
+              fillOpacity="0.3"
+            />
+          </svg>
         </div>
-        <div className="bg-[#0083CA] hover:bg-gray-800 p-4">
-          <Link href={`#`}>
-            <h1 className="text-sm font-bold flex flex-wrap items-center justify-between">
-              {titleDetail}
-              <span>
-                <IoIosArrowForward size={20} />
-              </span>
-            </h1>
-          </Link>
-          <p className="text-xs my-6">{details}</p>
+        <div className="xl:w-[250px] xl:h-[300px] md:w-[250px] md:h-[300px] sm:w-[250px] sm:h-[300px] w-[350px] h-[200px] absolute object-cover bg-cover bg-fixed bg-no-repeat -z-10">
+          <Image src={src} width={800} height={300} alt={alt} />
         </div>
       </div>
+      <div className="bg-[#0083CA] hover:bg-gray-800 p-4">
+        <Link href={`#`}>
+          <h1 className="text-sm font-bold flex flex-wrap items-center justify-between">
+            {titleDetail}
+            <span>
+              <IoIosArrowForward size={20} />
+            </span>
+          </h1>
+          <p className="text-xs my-6">{details}</p>
+        </Link>
+      </div>
+    </div>
   );
 }

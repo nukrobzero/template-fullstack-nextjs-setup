@@ -45,12 +45,12 @@ export default function Hero() {
   ];
 
   return (
-    <div className="max-h-[720px]">
+    <div className="xl:max-h-[720px] h-screen max-w-[1920px] mx-auto">
       <Slide ref={ref} {...properties}>
         {slideImages.map((slideImages, idx) => (
           <div
             key={idx}
-            className="slide-container max-h-[720px] text-white"
+            className="slide-container xl:max-h-[720px] h-screen text-white"
             style={{
               backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.6) 38.4%, rgba(58, 58, 58, 0.329522) 59.17%, rgba(58, 58, 58, 0) 77.57%)`,
               backgroundBlendMode: "multiply",
@@ -61,10 +61,10 @@ export default function Hero() {
               width={1920}
               height={1080}
               alt={slideImages.caption}
-              className=" absolute object-cover bg-cover bg-fixed bg-no-repeat -z-10"
+              className=" absolute object-cover bg-cover bg-fixed bg-no-repeat -z-10 h-screen"
             />
             <Sections>
-              <div className="container flex flex-col h-[720px] justify-center text-start">
+              <div className="container flex flex-col xl:h-[720px] h-screen justify-center text-start">
                 <h2 className="lg:text-5xl md:text-5xl text-3xl font-bold">
                   {slideImages.caption}
                   <br />
@@ -115,20 +115,20 @@ export default function Hero() {
           </div>
         </div>
       </Sections>
-      <div className="z-10 relative xl:top-[-149px] md:top-[-149px] sm:top-[-149px] top-[-149px]">
+      <div className="z-10 relative xl:top-[-152px] md:top-[-152px] sm:top-[-152px] top-[-152px]">
         <div className="flex flex-row lg:justify-end md:justify-end justify-center">
           <div
-            className="flex flex-row items-center justify-center"
+            className="flex flex-row items-center justify-center xl:w-auto md:w-auto w-full"
             style={{
               backgroundColor: "rgba(58, 58, 58, 0.9)",
             }}
           >
-            <div className="text-white xl:px-8 md:px-8 sm:px-4 px-2 lg:mr-40 md:mr-24">
+            <div className="text-white xl:px-8 md:px-8 sm:px-4 px-2 lg:mr-40 md:mr-24 xl:text-base md:text-base sm:text-base text-xs">
               <h1>Sumipol Corporation Limited</h1>
               <h1>Phone : +66 (02) 762 3000</h1>
               <h1>Email: contact@sumipol.com</h1>
             </div>
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center xl:w-[173px] xl:h-[100px] md:w-[173px] md:h-[100px] w-[140px] h-[100px]">
               <Image
                 src={`/home/hero-bg.jpeg`}
                 width={173}
