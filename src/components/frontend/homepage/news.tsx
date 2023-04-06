@@ -19,7 +19,7 @@ const NewsHome: NextPage = () => {
               View all
             </Link>
           </div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex xl:flex-row flex-col justify-center items-center">
             <div className="flex flex-row justify-center items-center">
               <div className="w-[180px] h-[140px] flex flex-row justify-center items-center mr-8">
                 <Image

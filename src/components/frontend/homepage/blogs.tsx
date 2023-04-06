@@ -7,9 +7,9 @@ export default function BlogHome() {
       <Sections>
         <div className="container flex flex-col justify-center items-center xl:h-[600px]">
           <div className="flex flex-col justify-center items-center">
-            <h1 className="uppercase text-color1 font-bold my-4">blog</h1>
+            <h1 className="uppercase text-[#0083CA] font-bold my-4">blog</h1>
             <h1 className="text-4xl font-bold">
-              Latest <span className="text-color1">Posts</span>
+              Latest <span className="text-[#0083CA]">Posts</span>
             </h1>
             <p>อัพเดททุกเทรนด์เทคโนโลยีอุตสาหกรรม</p>
           </div>

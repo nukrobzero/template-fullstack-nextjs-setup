@@ -12,7 +12,7 @@ export default function Products() {
           <div className="flex flex-col items-center justify-start w-full xl:-mt-38 md:-mt-32 sm:mt-36 mb-6">
             <div className="container flex flex-row justify-center">
               <div>
-                <h1 className=" uppercase text-sm font-bold text-color1">
+                <h1 className="uppercase text-sm font-bold text-[#0083CA]">
                   PRODUCTS
                 </h1>
                 <h1 className="xl:text-3xl md:text-2xl sm:text-2xl text-lg font-bold">
@@ -42,7 +42,7 @@ export default function Products() {
             </p>
             <Link
               href={`#`}
-              className="flex flex-wrap items-center text-color1 my-8"
+              className="flex flex-wrap items-center text-[#0083CA] my-8"
             >
               Learn more{" "}
               <span className="flex flex-col items-center justify-items-center justify-center text-center ml-8 pt-1">

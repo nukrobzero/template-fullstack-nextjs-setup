@@ -4,17 +4,16 @@ import ItemsServices from "./items-image-services";
 
 export default function ServiceHero() {
   return (
-    <div className="flex flex-col justify-center items-center max-w-[1920px] mx-auto py-8">
-      <div className="flex flex-col justify-center text-center absolute -z-10 w-[1920px] bg-fixed object-cover mx-auto">
-        <Image
-          src={`/home/services/Rectangle-51.png`}
-          width={1920}
-          height={1080}
-          alt="bg-service-solutons"
-        />
-      </div>
-      <Sections>
-        <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center max-w-[1920px] mx-auto">
+      <div className="flex flex-col justify-center items-center w-[100%] h-auto">
+          <Image
+            src={`/home/services/Rectangle-51.png`}
+            width={1920}
+            height={1080}
+            alt="bg-service-solutons"
+            className="absolute object-cover -z-10"
+          />
+        <div className="flex flex-col justify-center items-center py-8">
           <div className="text-center">
             <h3 className=" uppercase text-[#0083CA] font-bold text-sm">
               SOLUTIONS
@@ -54,7 +53,7 @@ export default function ServiceHero() {
             </div>
           </div>
         </div>
-      </Sections>
+      </div>
     </div>
   );
 }
