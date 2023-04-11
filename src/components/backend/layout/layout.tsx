@@ -12,7 +12,7 @@ export default function LayoutAdmin({ children }: any) {
     signIn();
     return null;
   }
-  console.log(session);
+  //console.log(session);
   return (
     <div className="flex flex-col h-screen">
       <div className="bg-gray-800 h-16 flex items-center justify-center">
@@ -35,6 +35,22 @@ export default function LayoutAdmin({ children }: any) {
                 className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
               >
                 Services
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/dashboard/blogs"
+                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
+              >
+                Blogs
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/dashboard/category"
+                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
+              >
+                Category
               </Link>
             </li>
             <li className="mb-2">

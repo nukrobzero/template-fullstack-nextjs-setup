@@ -59,25 +59,51 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Pages {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  slug      String
-  cover     String
-  content   String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  subpages  Subpages[]
+model Services {
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  slug            String
+  coverImage      String
+  backgroundImage String
+  content         String?
+  metaDescription String
+  formNumber      Int
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  subservices     Subservices[]
 }
 
-model Subpages {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  pagesId   String?  @db.ObjectId
-  title     String
-  slug      String
-  cover     String
-  content   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Pages     Pages?   @relation(fields: [pagesId], references: [id], onDelete: Cascade)
+model Subservices {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  ServicesId      String?   @db.ObjectId
+  title           String
+  slug            String
+  coverImage      String
+  backgroundImage String
+  content         String?
+  metaDescription String
+  formNumber      Int
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  Services        Services? @relation(fields: [ServicesId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  Blogs       Blogs[]
+}
+
+model Blogs {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  categoryId      String?   @db.ObjectId
+  title           String
+  slug            String
+  coverImage      String
+  content         String?
+  metaDescription String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  Category        Category? @relation(fields: [categoryId], references: [id])
 }

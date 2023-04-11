@@ -6,14 +6,10 @@ const SunEditor = dynamic(() => import("suneditor-react"), {
   ssr: false,
 });
 
-interface EditorProps {
-  value: string;
-  onChange: any;
-}
-
-export default function Editor({ value, onChange }: EditorProps) {
+const MyComponent: React.FC = (props) => {
   return (
     <div>
+      <p> My Other Contents </p>
       <SunEditor
         lang="en"
         height={"auto"}
@@ -22,43 +18,27 @@ export default function Editor({ value, onChange }: EditorProps) {
           resizingBar: false,
           buttonList: [
             [
-              "undo",
-              "redo",
               "formatBlock",
-              "fontSize",
-              "paragraphStyle",
-              "blockquote",
               "bold",
               "underline",
               "italic",
               "strike",
-              "subscript",
-              "superscript",
+              "blockquote",
+              "showBlocks",
               "fontColor",
               "hiliteColor",
-              "textStyle",
-              "removeFormat",
-              "outdent",
-              "indent",
               "align",
-              "horizontalRule",
               "list",
-              "lineHeight",
               "table",
               "link",
               "image",
               "video",
-              "fullScreen",
-              "showBlocks",
-              "codeView",
-              "preview",
-              "print",
+              "removeFormat",
             ],
           ],
         }}
-        defaultValue={value}
-        onChange={onChange}
       />
     </div>
   );
-}
+};
+export default MyComponent;

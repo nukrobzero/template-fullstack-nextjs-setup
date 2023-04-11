@@ -2,7 +2,7 @@ const UnoCSS = require("@unocss/webpack").default;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: ["localhost"],
   },

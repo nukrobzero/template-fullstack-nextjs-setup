@@ -39,43 +39,29 @@ export default async function handler(
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
-      const { pagesId, title, content } = req.body;
+
+      const { title, content, categoryId, metaDescription } = req.body;
+
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      if (req.file) {
-        try {
-          const { originalname, path, filename } = req.file;
-          const parts = originalname.split(".");
-          const ext = parts[parts.length - 1];
-          const newPath = path + "." + ext;
-          const newPathDB = "uploads/" + filename + "." + ext;
+      const { originalname, path, filename } = req.file;
+      const parts = originalname.split(".");
+      const ext = parts[parts.length - 1];
+      const newPath = path + "." + ext;
+      const newPathDB = "uploads/" + filename + "." + ext;
 
-          fs.renameSync(path, newPath);
+      fs.renameSync(path, newPath);
 
-          const response = await prisma.subpages.create({
-            data: {
-              pagesId: pagesId as string,
-              title: title as string,
-              slug: slug as string,
-              cover: newPathDB,
-              content: content as string,
-            },
-          });
-          res.status(200).json(response);
-        } catch (e) {
-          res.status(500).json({ message: "Something went wrong!" });
-        }
-      } else {
-        const response = await prisma.subpages.create({
-          data: {
-            pagesId: pagesId as string,
-            title: title as string,
-            slug: slug as string,
-            cover: "",
-            content: content as string,
-          },
-        });
-        res.status(200).json(response);
-      }
+      const response = await prisma.blogs.create({
+        data: {
+          title: title as string,
+          slug: slug as string,
+          categoryId: categoryId as string,
+          metaDescription: metaDescription as string,
+          coverImage: newPathDB as string,
+          content: content as string,
+        },
+      });
+      res.status(200).json(response);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }
@@ -83,6 +69,9 @@ export default async function handler(
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
+      const { id, title, coverImage, content, categoryId, metaDescription } =
+        req.body;
+      const slug = title.replace(/\s+/g, "-").toLowerCase();
       //check have new image
       if (req.file) {
         try {
@@ -93,20 +82,20 @@ export default async function handler(
           const newPathDB = "uploads/" + filename + "." + ext;
 
           fs.renameSync(path, newPath);
-          const { id, title, cover, content } = req.body;
-          const slug = title.replace(/\s+/g, "-").toLowerCase();
 
           // Delete image from public/uploads folder
-          fs.unlinkSync(`public/${cover}`);
+          fs.unlinkSync(`public/${coverImage}`);
 
-          const response = await prisma.subpages.update({
+          const response = await prisma.blogs.update({
             where: {
               id,
             },
             data: {
               title: title as string,
               slug: slug as string,
-              cover: newPathDB as string,
+              categoryId: categoryId as string,
+              metaDescription: metaDescription as string,
+              coverImage: newPathDB as string,
               content: content as string,
             },
           });
@@ -117,15 +106,15 @@ export default async function handler(
         }
       }
       //if not have new image
-      const { id, title, content } = req.body;
-      const slug = title.replace(/\s+/g, "-").toLowerCase();
-      const response = await prisma.subpages.update({
+      const response = await prisma.blogs.update({
         where: {
           id,
         },
         data: {
           title: title as string,
           slug: slug as string,
+          categoryId: categoryId as string,
+          metaDescription: metaDescription as string,
           content: content as string,
         },
       });
@@ -135,7 +124,7 @@ export default async function handler(
     }
   } else if (req.method === "GET") {
     try {
-      const getPage = await prisma.subpages.findMany();
+      const getPage = await prisma.blogs.findMany();
       res.status(200).json(getPage);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });

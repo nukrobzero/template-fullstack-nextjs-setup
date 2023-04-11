@@ -38,46 +38,48 @@ export default async function handler(
   if (req.method === "POST") {
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
-      await runMiddleware(req, res, multerUpload.single("file"));
-      const { title, content } = req.body;
+      await runMiddleware(
+        req,
+        res,
+        multerUpload.fields([
+          { name: "coverImage", maxCount: 1 },
+          { name: "backgroundImage", maxCount: 1 },
+        ])
+      );
+      const { title, content, metaDescription, formNumber } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      if (req.file) {
-        try {
-          const { originalname, path, filename } = req.file;
-          const parts = originalname.split(".");
-          const ext = parts[parts.length - 1];
-          const newPath = path + "." + ext;
-          const newPathDB = "uploads/" + filename + "." + ext;
-
-          fs.renameSync(path, newPath);
-
-          const response = await prisma.pages.create({
-            data: {
-              title: title as string,
-              slug: slug as string,
-              cover: newPathDB as string,
-              content: content as string,
-            },
-          });
-          res.status(200).json(response);
-        } catch (e) {
-          res.status(500).json({ message: "Something went wrong!" });
-        }
-      } else {
-        try {
-          const response = await prisma.pages.create({
-            data: {
-              title: title as string,
-              slug: slug as string,
-              cover: "",
-              content: content as string,
-            },
-          });
-          res.status(200).json(response);
-        } catch (e) {
-          res.status(500).json({ message: "Something went wrong!" });
-        }
+      let coverPath = "";
+      if (req.files["coverImage"]) {
+        const { originalname, path, filename } = req.files["coverImage"][0];
+        const parts = originalname.split(".");
+        const ext = parts[parts.length - 1];
+        const newPath = path + "." + ext;
+        const newPathDB = "uploads/" + filename + "." + ext;
+        fs.renameSync(path, newPath);
+        coverPath = newPathDB;
       }
+      let bgPath = "";
+      if (req.files["backgroundImage"]) {
+        const { originalname, path, filename } = req.files["backgroundImage"][0];
+        const parts = originalname.split(".");
+        const ext = parts[parts.length - 1];
+        const newPath = path + "." + ext;
+        const newPathDB = "uploads/" + filename + "." + ext;
+        fs.renameSync(path, newPath);
+        bgPath = newPathDB;
+      }
+      const response = await prisma.subservices.create({
+        data: {
+          title: title as string,
+          slug: slug as string,
+          coverImage: coverPath as string,
+          backgroundImage: bgPath as string,
+          metaDescription,
+          formNumber,
+          content: content as string,
+        },
+      });
+      res.status(200).json(response);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }
@@ -101,14 +103,14 @@ export default async function handler(
           // Delete image from public/uploads folder
           fs.unlinkSync(`public/${cover}`);
 
-          const response = await prisma.pages.update({
+          const response = await prisma.subservices.update({
             where: {
               id,
             },
             data: {
               title: title as string,
               slug: slug as string,
-              cover: newPathDB as string,
+              coverImage: newPathDB as string,
               content: content as string,
             },
           });
@@ -119,7 +121,7 @@ export default async function handler(
         }
       }
       //if not have new image
-      const response = await prisma.pages.update({
+      const response = await prisma.subservices.update({
         where: {
           id,
         },
@@ -135,7 +137,7 @@ export default async function handler(
     }
   } else if (req.method === "GET") {
     try {
-      const getPage = await prisma.pages.findMany();
+      const getPage = await prisma.subservices.findMany();
       res.status(200).json(getPage);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });

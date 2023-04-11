@@ -20,9 +20,9 @@ export default function SubServicePage({ page }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
-  const pages = await prisma.pages.findMany({
+  const pages = await prisma.services.findMany({
     include: {
-      subpages: true,
+      subservices: true,
     },
   });
   const findPage = pages.find((page: any) => page.slug.toString() === slug);
