@@ -14,29 +14,29 @@ export default async function handler(
   }
   if (req.method === "DELETE") {
     const { id } = req.query;
-    const page = await prisma.pages.findUnique({
+    const page = await prisma.services.findUnique({
       where: { id: id as string },
       include: {
-        subpages: true,
+        subservices: true,
       },
     });
     if (!page) {
       return res.status(404).json({ message: "Page not found." });
     }
-    const { cover } = page;
+    const { coverImage } = page;
 
     // Delete image from public/uploads folder
-    cover === "" ? "" : fs.unlinkSync(`public/${cover}`);
+    coverImage === "" ? "" : fs.unlinkSync(`public/${coverImage}`);
 
     // Delete subpages and their images
-    for (const subpage of page.subpages) {
-      const { cover: subpageCover } = subpage;
+    for (const subpage of page.subservices) {
+      const { coverImage: subpageCover } = subpage;
       fs.unlinkSync(`public/${subpageCover}`);
-      await prisma.subpages.delete({
+      await prisma.subservices.delete({
         where: { id: subpage.id },
       });
     }
-    const deletePage = await prisma.pages.delete({
+    const deletePage = await prisma.services.delete({
       where: { id: id as string },
     });
     res.status(200).json(deletePage);

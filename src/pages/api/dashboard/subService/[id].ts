@@ -14,17 +14,17 @@ export default async function handler(
   }
   if (req.method === "DELETE") {
     const { id } = req.query;
-    const page = await prisma.subpages.findUnique({
+    const page = await prisma.subservices.findUnique({
       where: { id: id as string },
     });
     if (!page) {
       return res.status(404).json({ message: "Page not found." });
     }
-    const { cover } = page;
+    const { coverImage } = page;
     // Delete image from public/uploads folder
-    cover === "" ? "" : fs.unlinkSync(`public/${cover}`);
+    coverImage === "" ? "" : fs.unlinkSync(`public/${coverImage}`);
     
-    const deletePage = await prisma.subpages.delete({
+    const deletePage = await prisma.subservices.delete({
       where: { id: id as string },
     });
     res.status(200).json(deletePage);
