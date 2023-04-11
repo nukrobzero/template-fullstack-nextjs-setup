@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import { prisma } from "@/lib/prismadb";
 
 interface Props {
   blogs: any;
