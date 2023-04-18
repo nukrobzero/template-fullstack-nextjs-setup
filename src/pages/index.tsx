@@ -11,6 +11,8 @@ import NewsHome from "@/components/frontend/homepage/news";
 import { useEffect } from "react";
 import type { GetStaticProps, NextPage } from "next";
 import axios from "axios";
+import Partners from "@/components/frontend/homepage/partners";
+import ContactHome from "@/components/frontend/homepage/contact";
 
 interface Props {
   data: any;
@@ -33,6 +35,8 @@ const Home: NextPage<Props> = ({ data }) => {
         <BlogHome />
         <Simtec />
         <NewsHome />
+        <Partners />
+        <ContactHome />
       </div>
     </Layout>
   );

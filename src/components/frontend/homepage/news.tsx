@@ -7,9 +7,9 @@ const NewsHome: NextPage = () => {
   return (
     <div className="bg-[#F4F4F4]">
       <Sections>
-        <div className="flex flex-col justify-center text-center xl:px-24">
+        <div className="flex flex-col justify-center text-center xl:px-24 pt-12 mx-auto">
           <div className="flex flex-row justify-between">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-2xl md:text-3xl font-bold">
               News & <span className="text-[#0083CA]">Activities</span>
             </h1>
             <Link
@@ -19,47 +19,105 @@ const NewsHome: NextPage = () => {
               View all
             </Link>
           </div>
-          <div className="flex xl:flex-row flex-col justify-center items-center">
-            <div className="flex flex-row justify-center items-center">
-              <div className="w-[180px] h-[140px] flex flex-row justify-center items-center mr-8">
-                <Image
-                  src={`/home/news/new1.jpeg`}
-                  width={800}
-                  height={400}
-                  alt="news1"
-                />
+          <div className="flex xl:flex-row flex-col justify-center items-center md:space-x-4">
+            <div className="flex-col justify-center space-y-6 hidden md:flex">
+              <div className="flex flex-row justify-center items-center space-x-2">
+                <div className="w-[180px] h-[140px] flex flex-row justify-center items-center">
+                  <Image
+                    src={`/home/news/News-Highlight.jpg`}
+                    width={800}
+                    height={400}
+                    alt="news1"
+                  />
+                </div>
+                <div className="flex flex-col justify-start space-y-2 text-start md:w-428px">
+                  <span className="text-[#0083CA] font-semibold text-sm">
+                    MAR 15, 2023
+                  </span>
+                  <h1 className="text-base font-bold text-base">
+                    SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
+                    “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
+                  </h1>
+                  <p className="text-xs">
+                    เมื่อวันที่ 28 มีนาคม 2566 ดร.สมชาย ธำรงสุข
+                    ผู้อำนวยการสถาบันการอาชีวศึกษาภาคตะวันออก
+                    เป็นประธานเปิดการฝึกอบรมหลักสูตร
+                    “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่” ภายใต้โครงการความร่วมมือ
+                    การฝึกอบรมและพัฒนาครูอาชีวศึกษา
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col justify-center items-start">
-                <h1 className="text-color1 font-bold">MAR 15, 2023</h1>
-                <h1 className="text-base font-bold my-2">
-                  SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
-                  “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
-                </h1>
-                <p className="text-sm">
-                  เมื่อวันที่ 28 มีนาคม 2566 ดร.สมชาย ธำรงสุข
-                  ผู้อำนวยการสถาบันการอาชีวศึกษาภาคตะวันออก
-                  เป็นประธานเปิดการฝึกอบรมหลักสูตร
-                  “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่” ภายใต้โครงการความร่วมมือ
-                  การฝึกอบรมและพัฒนาครูอาชีวศึกษา
-                </p>
+              <div className="flex flex-row justify-center items-center space-x-2">
+                <div className="w-[180px] h-[140px] flex flex-row justify-center items-center">
+                  <Image
+                    src={`/home/news/News-Highlight.jpg`}
+                    width={800}
+                    height={400}
+                    alt="news1"
+                  />
+                </div>
+                <div className="flex flex-col justify-start space-y-2 text-start md:w-428px">
+                  <span className="text-[#0083CA] font-semibold text-sm">
+                    MAR 15, 2023
+                  </span>
+                  <h1 className="text-base font-bold text-base">
+                    SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
+                    “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
+                  </h1>
+                  <p className="text-xs">
+                    เมื่อวันที่ 28 มีนาคม 2566 ดร.สมชาย ธำรงสุข
+                    ผู้อำนวยการสถาบันการอาชีวศึกษาภาคตะวันออก
+                    เป็นประธานเปิดการฝึกอบรมหลักสูตร
+                    “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่” ภายใต้โครงการความร่วมมือ
+                    การฝึกอบรมและพัฒนาครูอาชีวศึกษา
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-row justify-center items-center space-x-2">
+                <div className="w-[180px] h-[140px] flex flex-row justify-center items-center">
+                  <Image
+                    src={`/home/news/News-Highlight.jpg`}
+                    width={800}
+                    height={400}
+                    alt="news1"
+                  />
+                </div>
+                <div className="flex flex-col justify-start space-y-2 text-start md:w-428px">
+                  <span className="text-[#0083CA] font-semibold text-sm">
+                    MAR 15, 2023
+                  </span>
+                  <h1 className="text-base font-bold text-base">
+                    SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
+                    “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
+                  </h1>
+                  <p className="text-xs">
+                    เมื่อวันที่ 28 มีนาคม 2566 ดร.สมชาย ธำรงสุข
+                    ผู้อำนวยการสถาบันการอาชีวศึกษาภาคตะวันออก
+                    เป็นประธานเปิดการฝึกอบรมหลักสูตร
+                    “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่” ภายใต้โครงการความร่วมมือ
+                    การฝึกอบรมและพัฒนาครูอาชีวศึกษา
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="flex flex-col justify-center items-center shadow-2xl my-8">
-              <div className="object-cover">
+            <div className="flex flex-col justify-center items-center shadow-2xl my-8 md:!max-w-392px">
+              <div className="object-cover md:w-392px md:h-305px">
                 <Image
-                  src={`/home/news/new1.jpeg`}
+                  src={`/home/news/News-Highlight.jpg`}
                   width={800}
                   height={400}
                   alt="news1"
                 />
               </div>
-              <div className="flex flex-col justify-center items-start text-start p-4">
-                <h1 className="text-color1 font-bold text-sm">MAR 15, 2023</h1>
-                <h1 className="text-sm font-bold my-2">
+              <div className="md:w-392px p-6 text-start space-y-2 bg-[#404040] text-white">
+                <span className="text-[#0083CA] font-semibold text-sm">
+                  MAR 15, 2023
+                </span>
+                <h1 className="text-base font-bold text-base">
                   SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
                   “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
                 </h1>
-                <p className="truncate text-sm w-[180px]">
+                <p className="text-xs">
                   เมื่อวันที่ 28 มีนาคม 2566 ดร.สมชาย ธำรงสุข
                   ผู้อำนวยการสถาบันการอาชีวศึกษาภาคตะวันออก
                   เป็นประธานเปิดการฝึกอบรมหลักสูตร

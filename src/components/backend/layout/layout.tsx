@@ -47,6 +47,14 @@ export default function LayoutAdmin({ children }: any) {
             </li>
             <li className="mb-2">
               <Link
+                href="/dashboard/news-and-activities"
+                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
+              >
+                News & Activities
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
                 href="/dashboard/category"
                 className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
               >

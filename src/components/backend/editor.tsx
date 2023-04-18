@@ -1,4 +1,3 @@
-import React from "react";
 import dynamic from "next/dynamic";
 import "suneditor/dist/css/suneditor.min.css"; // Import Sun Editor's CSS File
 
@@ -8,16 +7,23 @@ const SunEditor = dynamic(() => import("suneditor-react"), {
 
 interface EditorProps {
   value: string;
-  onChange: any;
+  onChange: (content: string) => void;
 }
 
 export default function Editor({ value, onChange }: EditorProps) {
+  const serializer = (html: string) => {
+    // Modify the HTML string here to add Tailwind CSS classes
+    const modifiedHtml = html.replace(/<p>/g, '<p class="text-red-500">');
+    return modifiedHtml;
+  };
+  
   return (
     <div>
       <SunEditor
         lang="en"
         height={"auto"}
         placeholder={"Type here...."}
+        setDefaultStyle="font-size: 16px;"
         setOptions={{
           resizingBar: false,
           buttonList: [

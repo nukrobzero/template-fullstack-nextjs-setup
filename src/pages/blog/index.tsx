@@ -99,7 +99,7 @@ export default function Blogs({ blogs }: Props) {
                     href={`blog/${data.slug}`}
                     className="text-xl font-bold bg-gradient-to-r from-[#0083CA] to-[#0083CA] bg-[length:0%_2px] bg-no-repeat bg-left-bottom group-hover:bg-[length:100%_3px] transition-all duration-500"
                   >
-                    {data.metaDescription}
+                    {data.title}
                   </Link>
                 </div>
               </div>
@@ -126,6 +126,9 @@ export const getStaticProps: GetStaticProps = async () => {
           title: true,
         },
       },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
   const blogs = JSON.parse(JSON.stringify(response));

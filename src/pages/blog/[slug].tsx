@@ -35,8 +35,8 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
           </div>
           <article>
             <div className="xl:max-w-screen-2xl md:max-w-screen-xl sm:max-w-screen-sm flex flex-wrap items-center mx-auto p-4">
-              <div className="flex flex-row mx-auto my-12">
-                <div>
+              <div className="flex flex-col lg:flex-row mx-auto my-12">
+                <div className="container lg:max-w-753px">
                   <div>
                     <Image
                       src={`/${blogPost.coverImage}`}
@@ -60,18 +60,19 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
                       {blogPost.Category.title}
                     </span>
                     <span>
-                      <FaFacebookSquare size={50} />
+                      <FaFacebookSquare size={30} />
                     </span>
                   </div>
                   <div>
                     <h1 className="text-4xl font-bold">{blogPost.title}</h1>
                     <div
+                      className="prose lg:max-w-753px mx-auto"
                       dangerouslySetInnerHTML={{ __html: blogPost.content }}
                     ></div>
                   </div>
                 </div>
-                <div className="mx-10">
-                  <div>
+                <div className="container max-w-300px pl-10">
+                  <div className="hidden md:block">
                     <div className="flex flex-row justify-between items-center underline">
                       <h1 className="text-2xl font-bold uppercase">Category</h1>
                       <span>
@@ -89,7 +90,7 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
                       ))}
                     </ul>
                   </div>
-                  <div className="my-36">
+                  <div className="md:my-36">
                     <div className="flex flex-row justify-between items-center underline">
                       <h1 className="text-2xl font-bold uppercase">
                         RECENT POST

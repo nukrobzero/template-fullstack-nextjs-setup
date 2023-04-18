@@ -45,10 +45,10 @@ export default function Navbar() {
         {menuOpen && (
           <>
             <div
-              className="fixed top-0 right-0 w-full h-full bg-black opacity-50 z-20"
+              className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-20"
               onClick={toggleCloseMenu}
             ></div>
-            <div className="fixed top-0 left-0 w-2/3 h-full bg-white z-30 border-r ease-in-out">
+            <div className="fixed top-0 right-0 w-2/3 h-full bg-white z-30 border-r ease-in-out">
               <div className="flex flex-wrap justify-end max-w-screen-xl mx-auto px-4 py-3">
                 <button onClick={toggleCloseMenu}>
                   <AiOutlineClose size={20} />
