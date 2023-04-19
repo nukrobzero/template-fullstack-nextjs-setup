@@ -12,8 +12,8 @@ export default function ItemsServices({
   title,
 }: Props) {
   return (
-    <div className="flex flex-col justify-center items-center hover:text-[#0083CA] cursor-pointer w-[200px] h-[200px]">
-      <div className="w-[110px] h-[110px]">
+    <div className="flex flex-col justify-center items-center hover:text-[#0083CA] cursor-pointer">
+      <div className="lg:w-[110px] lg:h-[110px]">
       <Image
         src={src}
         width={110}
@@ -21,7 +21,7 @@ export default function ItemsServices({
         alt={alt}
       />
       </div>
-      <div className="mt-4 text-center h-[90px]">
+      <div className="mt-4 text-center">
         <h3 className="font-bold">{title}</h3>
       </div>
     </div>

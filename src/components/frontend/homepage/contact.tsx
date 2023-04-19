@@ -3,16 +3,16 @@ import Image from "next/image";
 
 export default function ContactHome() {
   return (
-    <div className="xl:max-w-[1920px] md:max-w-screen-md sm:max-w-screen-sm mx-auto xl:p-0 p-4 relative h-700px my-6">
+    <div className="max-w-[1920px] mx-auto h-340px xl:h-680px relative bg-no-repeat bg-left">
       <Image
         src={`/home/contact-us/bg-img.jpg`}
-        width={1920}
-        height={1080}
+        width={1440}
+        height={600}
         alt="bg"
-        className="absolute -z-10 w-full object-center object-fill bg-cover"
+        className="absolute -z-10 w-full h-340px object-cover xl:h-680px"
       />
       <Sections>
-        <div className="md:px-24 h-700px flex flex-col justify-center">
+        <div className="h-340px xl:h-680px flex flex-col justify-center">
           <div className="bg-black text-white p-8 mt-12 max-w-[26rem] text-start space-y-4">
             <h1 className="text-2xl font-bold">
               Get in <span className="text-[#0083CA]">Touch</span>

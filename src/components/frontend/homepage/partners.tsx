@@ -51,7 +51,7 @@ export default function Partners() {
   ];
 
   return (
-    <div className="xl:max-w-screen-xl md:max-w-screen-md sm:max-w-screen-sm mx-auto p-4 md:px-24">
+    <div className="xl:max-w-screen-xl md:max-w-screen-md sm:max-w-screen-sm mx-auto p-4 lg:px-24 my-6">
       <div>
         <Slider {...settings} className="max-h-200px">
           {slideImages1.map((image, index) => (

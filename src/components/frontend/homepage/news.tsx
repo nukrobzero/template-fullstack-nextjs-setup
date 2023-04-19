@@ -7,7 +7,7 @@ const NewsHome: NextPage = () => {
   return (
     <div className="bg-[#F4F4F4]">
       <Sections>
-        <div className="flex flex-col justify-center text-center xl:px-24 pt-12 mx-auto">
+        <div className="w-full flex flex-col justify-center text-center pt-12 mx-auto">
           <div className="flex flex-row justify-between">
             <h1 className="text-2xl md:text-3xl font-bold">
               News & <span className="text-[#0083CA]">Activities</span>
@@ -19,18 +19,19 @@ const NewsHome: NextPage = () => {
               View all
             </Link>
           </div>
-          <div className="flex xl:flex-row flex-col justify-center items-center md:space-x-4">
+          <div className="flex xl:flex-row flex-col justify-between items-center md:space-x-4">
             <div className="flex-col justify-center space-y-6 hidden md:flex">
               <div className="flex flex-row justify-center items-center space-x-2">
-                <div className="w-[180px] h-[140px] flex flex-row justify-center items-center">
+                <div className="flex flex-row justify-center items-center">
                   <Image
                     src={`/home/news/News-Highlight.jpg`}
                     width={800}
                     height={400}
                     alt="news1"
+                    className="h-full w-full"
                   />
                 </div>
-                <div className="flex flex-col justify-start space-y-2 text-start md:w-428px">
+                <div className="flex flex-col justify-start space-y-2 text-start">
                   <span className="text-[#0083CA] font-semibold text-sm">
                     MAR 15, 2023
                   </span>
@@ -48,15 +49,16 @@ const NewsHome: NextPage = () => {
                 </div>
               </div>
               <div className="flex flex-row justify-center items-center space-x-2">
-                <div className="w-[180px] h-[140px] flex flex-row justify-center items-center">
+                <div className="flex flex-row justify-center items-center">
                   <Image
                     src={`/home/news/News-Highlight.jpg`}
                     width={800}
                     height={400}
                     alt="news1"
+                    className="h-full w-full"
                   />
                 </div>
-                <div className="flex flex-col justify-start space-y-2 text-start md:w-428px">
+                <div className="flex flex-col justify-start space-y-2 text-start">
                   <span className="text-[#0083CA] font-semibold text-sm">
                     MAR 15, 2023
                   </span>
@@ -74,15 +76,16 @@ const NewsHome: NextPage = () => {
                 </div>
               </div>
               <div className="flex flex-row justify-center items-center space-x-2">
-                <div className="w-[180px] h-[140px] flex flex-row justify-center items-center">
+                <div className="flex flex-row justify-center items-center">
                   <Image
                     src={`/home/news/News-Highlight.jpg`}
                     width={800}
                     height={400}
                     alt="news1"
+                    className="h-full w-full"
                   />
                 </div>
-                <div className="flex flex-col justify-start space-y-2 text-start md:w-428px">
+                <div className="flex flex-col justify-start space-y-2 text-start">
                   <span className="text-[#0083CA] font-semibold text-sm">
                     MAR 15, 2023
                   </span>

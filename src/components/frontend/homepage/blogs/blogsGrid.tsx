@@ -19,10 +19,12 @@ export default function BlogGrid({
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="">
-        <Image src={src} width={325} height={230} alt={alt} />
+        <Image src={src} width={325} height={230} alt={alt} 
+        className="lg:w-380px md:w-280px"
+        />
       </div>
-      <div className="flex flex-col justify-center w-[260px] h-[100] bg-white shadow-xl z-10 -mt-8 p-4">
-        <h1 className="flex flex-row items-center text-color1 text-xs font-bold cursor-default">
+      <div className="flex flex-col justify-center w-[260px] md:w-[200px] lg:w-[260px] h-[100] bg-white shadow-xl z-10 -mt-8 p-4">
+        <h1 className="flex flex-row items-center text-[#0083CA] text-xs font-bold cursor-default">
           <svg
             width="14"
             height="14"

@@ -18,9 +18,9 @@ export default function PostGrids({
   details,
 }: PostGridsProps) {
   return (
-    <div className="xl:w-[250px] xl:h-[300px] md:w-[250px] md:h-[300px]  sm:w-[250px] sm:h-[300px] w-[350px] h-[350px] text-white">
+    <div className="text-white">
       <div
-        className="xl:w-[250px] xl:h-[150px] md:w-[250px] md:h-[150px] sm:w-[250px] sm:h-[150px] w-[350px] h-[200px]"
+        className="w-[280px] h-[160px]"
         style={{
           background: "rgba(0, 86, 133, 0.6)",
           backgroundBlendMode: "multiply",
@@ -44,11 +44,11 @@ export default function PostGrids({
             />
           </svg>
         </div>
-        <div className="xl:w-[250px] xl:h-[300px] md:w-[250px] md:h-[300px] sm:w-[250px] sm:h-[300px] w-[350px] h-[200px] absolute object-cover bg-cover bg-fixed bg-no-repeat -z-10">
+        <div className="w-[280px] h-[160px] absolute object-cover bg-cover bg-fixed bg-no-repeat -z-10">
           <Image src={src} width={800} height={300} alt={alt} />
         </div>
       </div>
-      <div className="bg-[#0083CA] hover:bg-gray-800 p-4">
+      <div className="bg-[#0083CA] hover:bg-gray-800 p-4 w-[280px]">
         <Link href={`#`}>
           <h1 className="text-sm font-bold flex flex-wrap items-center justify-between">
             {titleDetail}

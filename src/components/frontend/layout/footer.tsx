@@ -10,10 +10,10 @@ export default function Footer() {
   };
 
   return (
-    <div className="bg-[#2C2C2C]">
-      <div className="p-4 text-[#D9D9D9] max-w-screen-xl mx-auto flex flex-col md:flex-row md:space-x-16">
-        <div className="flex flex-col justify-center md:w-[800px]">
-          <div className="py-6">
+    <div className="bg-[#2C2C2C] xl:h-400px">
+      <div className="p-4 text-[#D9D9D9] max-w-screen-xl mx-auto flex flex-col md:flex-row md:space-x-16 xl:h-400px">
+        <div className="flex flex-col justify-center md:w-[700px]">
+          <div className="py-4">
             <Image
               src={`/footer/Logo-Sumipol-Agile-white.png`}
               width={100}
@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
           <div className="space-y-8">
             <h1 className="font-bold">Sumipol Corporation Limited</h1>
-            <div className="flex flex-row space-x-4">
+            <div className="flex lg:flex-row flex-col lg:space-x-16 lg:space-y-none space-y-4">
               <span className="flex flex-col justify-center items-start font-semibold">
                 Phone
                 <span className="font-normal">
@@ -39,9 +39,9 @@ export default function Footer() {
                 </span>
               </span>
             </div>
-            <div className="space-y-2 pt-24">
+            <div className="space-y-2">
               <span className="font-bold">Follow us</span>
-              <div className="flex flex-row space-x-6">
+              <div className="flex flex-row space-x-4">
                 <span>
                   <FaFacebookSquare size={20} />
                 </span>
@@ -52,11 +52,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="grid grid-rows-2">
-          <div>Subscribe</div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid md:grid-rows-2 grid-cols-1 py-8">
+          <div className="hidden md:block">Subscribe</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:pb-12 md:-mt-12">
             <div>
-              <h1 className="font-semibold">สินค้าของเรา</h1>
+              <h1 className="font-semibold pb-2">สินค้าของเรา</h1>
               <ul className="list-disc pl-6">
                 <li>เครื่องมือตัดแต่งขึ้นรูปโลหะ</li>
                 <li>เครื่องมือวัด</li>
@@ -65,7 +65,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h1 className="font-semibold">บริการของเรา</h1>
+              <h1 className="font-semibold pb-2">บริการของเรา</h1>
               <ul className="list-disc pl-6">
                 <li>Smart Manufacturing Solutions</li>
                 <li>Machining Solutions</li>
@@ -74,7 +74,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h1 className="font-semibold">อื่นๆ</h1>
+              <h1 className="font-semibold pb-2">อื่นๆ</h1>
               <ul className="list-disc pl-6">
                 <li>ข่าวสาร</li>
                 <li>ดาวน์โหลด</li>

@@ -135,13 +135,13 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden w-full md:block md:w-auto">
           <ul className="flex cursor-pointer flex-row items-center justify-between lg:gap-24 md:gap-8  gap-4">
-            <li className="link link-underline link-underline-black">
+            <li className="link link-underline link-underline-black font-semibold">
               <Link href={`/about`}>About Us</Link>
             </li>
             <li
               onMouseEnter={() => setActiveMenu1(true)}
               onMouseLeave={() => setActiveMenu1(false)}
-              className="link link-underline link-underline-black"
+              className="link link-underline link-underline-black font-semibold"
             >
               <Link href={`/#`}>Products</Link>
               <span className=" inline-block">
@@ -168,7 +168,7 @@ export default function Navbar() {
             <li
               onMouseEnter={() => setActiveMenu2(true)}
               onMouseLeave={() => setActiveMenu2(false)}
-              className="link link-underline link-underline-black"
+              className="link link-underline link-underline-black font-semibold"
             >
               <Link href={`/services`}>Services</Link>
               <span className=" inline-block">
@@ -198,10 +198,10 @@ export default function Navbar() {
                 </ul>
               )}
             </li>
-            <li className="link link-underline link-underline-black">
+            <li className="link link-underline link-underline-black font-semibold">
               <Link href={`/blog`}>Blog</Link>
             </li>
-            <li className="link link-underline link-underline-black">
+            <li className="link link-underline link-underline-black font-semibold">
               <Link href={`/careers`}>Join US</Link>
             </li>
           </ul>

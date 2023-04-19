@@ -11,7 +11,6 @@ import Sections from "@/components/layoutpage";
 interface Props {
   blogs: any;
 }
-("use client");
 
 export default function Blogs({ blogs }: Props) {
   const dateFormat = (data: string): string => {
@@ -40,7 +39,7 @@ export default function Blogs({ blogs }: Props) {
             width={1920}
             height={350}
             alt="hero_Banner"
-            className="absolute -z-10 w-full h-350px object-center object-cover"
+            className="absolute -z-10 h-350px object-center object-cover"
           />
           <div className="relative flex flex-col justify-center items-center xl:w-768px md:w-600px sm:w-600px w-auto h-350px mx-auto p-4 text-center text-white">
             <h1 className="xl:text-2xl md:text-2xl sm:text-xl text-lg font-bold">

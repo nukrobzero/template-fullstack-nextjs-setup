@@ -5,17 +5,17 @@ import PostGrids from "./products/products-grid";
 
 export default function Products() {
   return (
-    <div className="max-w-[1920px] mx-auto py-12">
-      <div className="bg-[#FAF8F8] flex flex-wrap absolute w-full max-w-4xl md:w-2/4 xl:w-1/2 h-64 md:h-80 xl:h-[500px] -z-10"></div>
+    <div className="max-w-[1920px] mx-auto">
+      <div className="bg-[#FAF8F8] flex flex-wrap absolute w-full max-w-4xl md:w-[750px] h-64 md:h-[24rem] -z-10"></div>
       <Sections>
-        <div className="flex xl:flex-row md:flex-row sm:flex-col flex-col justify-center items-center xl:h-[300px] md:h-[300px] sm:h-[300px]">
-          <div className="flex flex-col items-center justify-start w-full xl:-mt-38 md:-mt-32 sm:mt-36 mb-6">
-            <div className="container flex flex-row justify-center">
-              <div>
+        <div className="flex md:flex-row flex-col justify-between md:space-x-32 space-x-none space-y-4 md:space-y-none py-8">
+          <div className="flex flex-col items-start justify-start w-full">
+            <div className="flex lg:flex-row flex-col justify-center">
+              <div className="flex flex-col justify-center items-start">
                 <h1 className="uppercase text-sm font-bold text-[#0083CA]">
                   PRODUCTS
                 </h1>
-                <h1 className="xl:text-3xl md:text-2xl sm:text-2xl text-lg font-bold">
+                <h1 className="xl:text-3xl sm:text-xl text-lg font-bold">
                   One-Stop <br />
                   Products Sourcing
                 </h1>
@@ -30,7 +30,7 @@ export default function Products() {
               </div>
             </div>
           </div>
-          <div className="container flex flex-col justify-center xl:px-12 md:px-16 md:text-sm xl:text-base sm:text-base text-sm">
+          <div className="flex flex-col justify-end items-start sm:text-base text-sm space-y-4">
             <p>
               ด้วยความต้องการของลูกค้าในการผลิตที่มีความแม่นยำและประสิทธิภาพสูง
               บริษัทของเราได้รวบรวมเครื่องมือตัดแต่งขึ้นรูปโลหะ เครื่องมือวัด
@@ -42,10 +42,10 @@ export default function Products() {
             </p>
             <Link
               href={`#`}
-              className="flex flex-wrap items-center text-[#0083CA] my-8"
+              className="flex flex-wrap items-center text-[#0083CA] font-semibold"
             >
-              Learn more{" "}
-              <span className="flex flex-col items-center justify-items-center justify-center text-center ml-8 pt-1">
+              Learn more
+              <span className="flex flex-col items-center justify-center ml-8">
                 <Image
                   src={`/home/products/Arrow-1.png`}
                   width={50}
@@ -56,8 +56,8 @@ export default function Products() {
             </Link>
           </div>
         </div>
-        <div className=" container flex flex-col justify-center items-center xl:m-0 md:m-0 sm:mt-36 my-8">
-          <div className="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 xl:gap-4 gap-8 justify-center items-center ">
+        <div className="flex flex-col justify-center items-center mx-auto pt-8 pb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-12 gap-8 justify-center items-center ">
             <PostGrids
               title="MACHINING"
               src="/home/products/Procurement_Service-1.jpg"

@@ -27,7 +27,7 @@ const Home: NextPage<Props> = ({ data }) => {
 
   return (
     <Layout>
-      <div>
+      <div className="mx-auto">
         <Headers title="Home Page" content="Home" />
         <Hero />
         <ServiceHero />
