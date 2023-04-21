@@ -40,7 +40,15 @@ export default async function handler(
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
 
-      const { title, content, categoryId, metaDescription } = req.body;
+      const {
+        title,
+        content,
+        categoryId,
+        description,
+        date,
+        keywords,
+        status,
+      } = req.body;
 
       const slug = title.replace(/\s+/g, "-").toLowerCase();
       const { originalname, path, filename } = req.file;
@@ -56,9 +64,12 @@ export default async function handler(
           title: title as string,
           slug: slug as string,
           categoryId: categoryId as string,
-          metaDescription: metaDescription as string,
+          description: description as string,
           coverImage: newPathDB as string,
           content: content as string,
+          date: date as string,
+          keywords: keywords as string,
+          status: status as string,
         },
       });
       res.status(200).json(response);
@@ -69,8 +80,16 @@ export default async function handler(
     try {
       const multerUpload = multer({ dest: "public/uploads/" });
       await runMiddleware(req, res, multerUpload.single("file"));
-      const { id, title, coverImage, content, categoryId, metaDescription } =
-        req.body;
+      const {
+        id,
+        title,
+        coverImage,
+        content,
+        categoryId,
+        description,
+        date,
+        status,
+      } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
       //check have new image
       if (req.file) {
@@ -94,7 +113,7 @@ export default async function handler(
               title: title as string,
               slug: slug as string,
               categoryId: categoryId as string,
-              metaDescription: metaDescription as string,
+              description: description as string,
               coverImage: newPathDB as string,
               content: content as string,
             },
@@ -114,7 +133,7 @@ export default async function handler(
           title: title as string,
           slug: slug as string,
           categoryId: categoryId as string,
-          metaDescription: metaDescription as string,
+          description: description as string,
           content: content as string,
         },
       });

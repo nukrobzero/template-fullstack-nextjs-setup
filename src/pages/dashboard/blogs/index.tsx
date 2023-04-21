@@ -1,6 +1,6 @@
-import BlogsDash from "@/components/backend/blogs/blog";
 import { GetServerSideProps } from "next";
 import { prisma } from "@/lib/prismadb";
+import TableBlogs from "@/components/backend/tables/table_Blogs";
 
 interface BlogsProps {
   blogs: any;
@@ -9,9 +9,13 @@ interface BlogsProps {
 
 export default function Blogs({ blogs, category }: BlogsProps) {
   return (
-    <div>
-      <BlogsDash page={blogs} category={category} apiurl={`/api/dashboard/blog`} />
-    </div>
+    <TableBlogs
+      page={blogs}
+      category={category}
+      pageTitle="Blogs"
+      apiurl={`/api/dashboard/blog`}
+      linkUrl="/dashboard/blogs"
+    />
   );
 }
 

@@ -5,7 +5,6 @@ import { prisma } from "@/lib/prismadb";
 import Layout from "@/components/frontend/layout/layout";
 import Headers from "@/components/headerAllpage";
 import Image from "next/image";
-import Sections from "@/components/layoutpage";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FiArrowDownRight } from "react-icons/fi";
 import Link from "next/link";
@@ -23,20 +22,20 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
         <div>
           <Headers content={blogPost.metaDescription} title={blogPost.title} />
         </div>
-        <div className="mt-80px max-w-[1920px] mx-auto">
+        <div className="mt-[80px] max-w-[1920px] mx-auto">
           <div className="h-auto">
             <Image
               src={`/blogs/hero_banner.jpg`}
               width={1920}
               height={350}
               alt="hero_Banner"
-              className="w-full h-250px object-center object-cover"
+              className="w-full h-[250px] object-center object-cover"
             />
           </div>
           <article>
             <div className="xl:max-w-screen-2xl md:max-w-screen-xl sm:max-w-screen-sm flex flex-wrap items-center mx-auto p-4">
-              <div className="flex flex-col lg:flex-row mx-auto my-12">
-                <div className="container lg:max-w-753px">
+              <div className="flex flex-col lg:flex-row mx-auto">
+                <div className="container lg:max-w-[753px] prose prose-zinc lg:prose-lg mx-auto">
                   <div>
                     <Image
                       src={`/${blogPost.coverImage}`}
@@ -66,12 +65,11 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
                   <div>
                     <h1 className="text-4xl font-bold">{blogPost.title}</h1>
                     <div
-                      className="prose lg:max-w-753px mx-auto"
                       dangerouslySetInnerHTML={{ __html: blogPost.content }}
                     ></div>
                   </div>
                 </div>
-                <div className="container max-w-300px pl-10">
+                <div className="container max-w-[300px] pl-10">
                   <div className="hidden md:block">
                     <div className="flex flex-row justify-between items-center underline">
                       <h1 className="text-2xl font-bold uppercase">Category</h1>
@@ -157,7 +155,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
       coverImage: true,
       content: true,
       createdAt: true,
-      metaDescription: true,
+      description: true,
       title: true,
       slug: true,
       Category: {
@@ -183,11 +181,11 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
       slug: true,
       title: true,
       coverImage: true,
-      metaDescription: true,
+      description: true,
     },
     take: 3,
     orderBy: {
-      updatedAt: "desc",
+      createdAt: "desc",
     },
   });
   const recentPost = JSON.parse(JSON.stringify(resBlogs));

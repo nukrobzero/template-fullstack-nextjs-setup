@@ -32,16 +32,16 @@ export default function Blogs({ blogs }: Props) {
       <div>
         <Headers title="Blogs Page" content="Blogs Page" />
       </div>
-      <div className="mt-80px max-w-[1920px] mx-auto">
+      <div className="mt-[80px] max-w-[1920px] mx-auto">
         <div className="h-auto">
           <Image
             src={`/blogs/hero_banner.jpg`}
             width={1920}
             height={350}
             alt="hero_Banner"
-            className="absolute -z-10 h-350px object-center object-cover"
+            className="absolute -z-10 h-[350px] object-center object-cover"
           />
-          <div className="relative flex flex-col justify-center items-center xl:w-768px md:w-600px sm:w-600px w-auto h-350px mx-auto p-4 text-center text-white">
+          <div className="relative flex flex-col justify-center items-center xl:w-768px md:w-600px sm:w-600px w-auto h-[350px] mx-auto p-4 text-center text-white">
             <h1 className="xl:text-2xl md:text-2xl sm:text-xl text-lg font-bold">
               Blog
             </h1>
@@ -56,7 +56,7 @@ export default function Blogs({ blogs }: Props) {
         <Sections>
           <div className="grid xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-10 mx-auto my-24">
             {blogs.map((data: any) => (
-              <div key={data.id} className="group w-280px h-470px">
+              <div key={data.id} className="group w-[280px] h-[470px]">
                 <Link href={`blog/${data.slug}`}>
                   <div className="overflow-hidden bg-cover bg-no-repeat border shadow-lg">
                     <Image
@@ -68,8 +68,8 @@ export default function Blogs({ blogs }: Props) {
                     />
                   </div>
                   <div className="flex justify-end mb-4 mr-4">
-                    <div className="absolute object-center flex flex-col w-65px -mt-60px text-right text-white">
-                      <span className="text-4xl font-bold bg-[#0083CA] text-center py-10px">
+                    <div className="absolute object-center flex flex-col w-65px -mt-[60px] text-right text-white">
+                      <span className="text-4xl font-bold bg-[#0083CA] text-center py-[10px]">
                         {dateFormat(data.createdAt)}
                       </span>
                       <span className="text-sm font-bold bg-[#404040] text-center">
@@ -117,7 +117,7 @@ export const getStaticProps: GetStaticProps = async () => {
       coverImage: true,
       content: true,
       createdAt: true,
-      metaDescription: true,
+      description: true,
       title: true,
       slug: true,
       Category: {

@@ -15,7 +15,7 @@ export default function LayoutAdmin({ children }: any) {
   //console.log(session);
   return (
     <div className="flex flex-col h-screen">
-      <div className="bg-gray-800 h-16 flex items-center justify-center">
+      <div className="bg-gray-800 flex items-center justify-center">
         <h1 className="text-white text-lg font-bold">logo</h1>
       </div>
       <div className="flex flex-grow">
@@ -51,6 +51,14 @@ export default function LayoutAdmin({ children }: any) {
                 className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
               >
                 News & Activities
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/dashboard/careers"
+                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
+              >
+                Careers
               </Link>
             </li>
             <li className="mb-2">

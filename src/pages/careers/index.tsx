@@ -13,16 +13,16 @@ export default function Careers() {
       <div>
         <Headers title="Careers Page" content="Careers Page" />
       </div>
-      <div className="mt-80px max-w-[1920px] mx-auto">
+      <div className="mt-[80px] max-w-[1920px] mx-auto">
         <div>
           <Image
             src={`/careers/bg-hero-careers.jpg`}
             width={1920}
             height={400}
             alt="hero_Banner"
-            className="absolute -z-10 h-500px object-center object-cover"
+            className="absolute -z-10 h-[500px] object-center object-cover"
           />
-          <div className="relative max-w-screen-xl flex flex-col justify-center items-start w-auto h-500px mx-auto p-4 text-start text-white">
+          <div className="relative max-w-screen-xl flex flex-col justify-center items-start w-auto h-[500px] mx-auto p-4 text-start text-white">
             <h1 className="xl:text-3xl md:text-2xl sm:text-xl text-lg font-bold">
               Careers
             </h1>
@@ -37,7 +37,7 @@ export default function Careers() {
       </div>
       <Sections>
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b-1 border-slate-700 space-y-6 md:space-y-none">
+          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b border-slate-700 space-y-6 md:space-y-0">
             <div className="space-y-4">
               <span className="bg-[#0083CA] py-2 px-6 text-white text-sm font-semibold cursor-default">
                 FULL TIME
@@ -62,7 +62,7 @@ export default function Careers() {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b-1 border-slate-700 space-y-6 md:space-y-none">
+          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b border-slate-700 space-y-6 md:space-y-0">
             <div className="space-y-4">
               <span className="bg-[#0083CA] py-2 px-6 text-white text-sm font-semibold cursor-default">
                 FULL TIME
@@ -87,7 +87,7 @@ export default function Careers() {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b-1 border-slate-700 space-y-6 md:space-y-none">
+          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b border-slate-700 space-y-6 md:space-y-0">
             <div className="space-y-4">
               <span className="bg-[#0083CA] py-2 px-6 text-white text-sm font-semibold cursor-default">
                 FULL TIME
@@ -112,7 +112,7 @@ export default function Careers() {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b-1 border-slate-700 space-y-6 md:space-y-none">
+          <div className="grid grid-cols-1 md:grid-cols-4 justify-center px-4 py-16 border-b border-slate-700 space-y-6 md:space-y-0">
             <div className="space-y-4">
               <span className="bg-[#0083CA] py-2 px-6 text-white text-sm font-semibold cursor-default">
                 FULL TIME

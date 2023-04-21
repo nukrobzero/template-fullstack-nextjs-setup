@@ -60,32 +60,46 @@ model VerificationToken {
 }
 
 model Services {
-  id              String        @id @default(auto()) @map("_id") @db.ObjectId
-  title           String
-  slug            String
-  coverImage      String
-  backgroundImage String
-  content         String?
-  metaDescription String
-  formNumber      Int
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  subservices     Subservices[]
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  slug          String
+  servicesimage ServicesImage[]
+  content       String?
+  description   String
+  formNumber    Int
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  subservices   Subservices[]
+}
+
+model ServicesImage {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  Services   Services? @relation(fields: [servicesId], references: [id], onDelete: Cascade)
+  servicesId String?   @db.ObjectId
+  title      String
+  createdAt  DateTime  @default(now())
 }
 
 model Subservices {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  ServicesId      String?   @db.ObjectId
-  title           String
-  slug            String
-  coverImage      String
-  backgroundImage String
-  content         String?
-  metaDescription String
-  formNumber      Int
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  Services        Services? @relation(fields: [ServicesId], references: [id], onDelete: Cascade)
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  ServicesId       String?            @db.ObjectId
+  title            String
+  slug             String
+  subservicesimage SubservicesImage[]
+  content          String?
+  metaDescription  String
+  formNumber       Int
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  Services         Services?          @relation(fields: [ServicesId], references: [id], onDelete: Cascade)
+}
+
+model SubservicesImage {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  Subservices   Subservices? @relation(fields: [subservicesId], references: [id], onDelete: Cascade)
+  subservicesId String?      @db.ObjectId
+  title         String
+  createdAt     DateTime     @default(now())
 }
 
 model Category {
@@ -96,14 +110,40 @@ model Category {
 }
 
 model Blogs {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  categoryId      String?   @db.ObjectId
-  title           String
-  slug            String
-  coverImage      String
-  content         String?
-  metaDescription String
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  Category        Category? @relation(fields: [categoryId], references: [id])
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  categoryId  String?   @db.ObjectId
+  title       String
+  slug        String
+  coverImage  String
+  content     String?
+  description String
+  keywords    String
+  date        String
+  status      String
+  createdAt   DateTime  @default(now())
+  Category    Category? @relation(fields: [categoryId], references: [id])
+}
+
+model News {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String
+  coverImage  String
+  content     String?
+  description String
+  keywords    String
+  status      String
+  date        String
+  createdAt   DateTime @default(now())
+}
+
+model Careers {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String
+  content     String?
+  description String
+  status      String
+  jobtype     String
+  createdAt   DateTime @default(now())
 }

@@ -14,7 +14,7 @@ export default function ContactUs() {
         <Headers title="Careers Page" content="Careers Page" />
       </div>
       <div
-        className="mt-80px max-w-[1920px] mx-auto"
+        className="mt-[80px] max-w-[1920px] mx-auto"
         style={{
           background: `rgba(0, 0, 0, 0.6)`,
           backgroundBlendMode: "multiply",
@@ -26,9 +26,9 @@ export default function ContactUs() {
             width={1920}
             height={400}
             alt="hero_Banner"
-            className="absolute -z-10 h-500px object-center object-cover"
+            className="absolute -z-10 h-[500px] object-center object-cover"
           />
-          <div className="relative max-w-screen-xl flex flex-col justify-center items-start w-auto h-500px mx-auto p-4 text-start text-white">
+          <div className="relative max-w-screen-xl flex flex-col justify-center items-start w-auto h-[500px] mx-auto p-4 text-start text-white">
             <h1 className="xl:text-3xl md:text-2xl sm:text-xl text-lg font-bold">
               Contacts
             </h1>
@@ -52,7 +52,7 @@ export default function ContactUs() {
             </div>
             <div className="space-y-8">
               <h1 className="font-bold">Sumipol Corporation Limited</h1>
-              <div className="flex lg:flex-row flex-col lg:space-x-16 lg:space-y-none space-y-4">
+              <div className="flex lg:flex-row flex-col lg:space-x-16 lg:space-y-0 space-y-4">
                 <span className="flex flex-col justify-center items-start font-semibold">
                   Phone
                   <span className="font-normal">

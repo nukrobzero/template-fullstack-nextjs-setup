@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function Simtec() {
   return (
     <div className="xl:max-w-[1920px] md:max-w-screen-md sm:max-w-screen-sm mx-auto flex flex-row justify-center items-center xl:p-0 p-4">
-      <div className="max-w-screen-xl mx-auto lg:h-350px flex flex-col justify-center items-center lg:items-start">
-        <div className="flex flex-col justify-start items-start lg:w-700px space-y-4 lg:mr-[33rem]">
+      <div className="max-w-screen-xl mx-auto lg:h-[350px] flex flex-col justify-center items-center lg:items-start">
+        <div className="flex flex-col justify-start items-start lg:w-[600px] space-y-4 lg:mr-[33rem]">
           <h1 className="text-xl font-bold text-center text-[#0083CA] pb-4">
             มิติใหม่ของศูนย์เทคนิคแห่งการเรียนรู้
           </h1>

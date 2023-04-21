@@ -1,9 +1,16 @@
-import News from "@/components/backend/news/news";
+import Table from "@/components/backend/tables/table_Career";
 
 export default function NewsAndActivities() {
   return (
     <div>
-      <News page={undefined} />
+      <div>
+        <Table
+          page={undefined}
+          apiurl="/api/dashboard/news-and-activities"
+          linkUrl="/dashboard/news-and-activities"
+          title="News & Activities"
+        />
+      </div>
     </div>
   );
 }

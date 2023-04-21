@@ -35,7 +35,7 @@ const NewsHome: NextPage = () => {
                   <span className="text-[#0083CA] font-semibold text-sm">
                     MAR 15, 2023
                   </span>
-                  <h1 className="text-base font-bold text-base">
+                  <h1 className="text-base font-bold">
                     SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
                     “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
                   </h1>
@@ -62,7 +62,7 @@ const NewsHome: NextPage = () => {
                   <span className="text-[#0083CA] font-semibold text-sm">
                     MAR 15, 2023
                   </span>
-                  <h1 className="text-base font-bold text-base">
+                  <h1 className="text-base font-bold">
                     SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
                     “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
                   </h1>
@@ -89,7 +89,7 @@ const NewsHome: NextPage = () => {
                   <span className="text-[#0083CA] font-semibold text-sm">
                     MAR 15, 2023
                   </span>
-                  <h1 className="text-base font-bold text-base">
+                  <h1 className="text-base font-bold">
                     SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
                     “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
                   </h1>
@@ -104,7 +104,7 @@ const NewsHome: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-col justify-center items-center shadow-2xl my-8 md:!max-w-392px">
-              <div className="object-cover md:w-392px md:h-305px">
+              <div className="object-cover md:w-[392px] md:h-[305px]">
                 <Image
                   src={`/home/news/News-Highlight.jpg`}
                   width={800}
@@ -112,11 +112,11 @@ const NewsHome: NextPage = () => {
                   alt="news1"
                 />
               </div>
-              <div className="md:w-392px p-6 text-start space-y-2 bg-[#404040] text-white">
+              <div className="md:w-[392px] p-6 text-start space-y-2 bg-[#404040] text-white">
                 <span className="text-[#0083CA] font-semibold text-sm">
                   MAR 15, 2023
                 </span>
-                <h1 className="text-base font-bold text-base">
+                <h1 className="text-base font-bold">
                   SIMTEC ร่วมจัดฝึกอบรมหลักสูตร
                   “วัสดุศาสตร์เพื่อการผลิตสมัยใหม่”
                 </h1>

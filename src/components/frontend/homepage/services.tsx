@@ -11,7 +11,7 @@ export default function ServiceHero() {
           width={1920}
           height={1080}
           alt="bg-service-solutons"
-          className="object-cover h-1090px md:h-640px xl:h-430px"
+          className="object-cover h-[1090px] md:h-[640px] xl:h-[430px]"
         />
       </div>
       <Sections>

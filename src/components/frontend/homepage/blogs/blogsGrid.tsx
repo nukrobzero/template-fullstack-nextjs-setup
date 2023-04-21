@@ -20,7 +20,7 @@ export default function BlogGrid({
     <div className="flex flex-col justify-center items-center">
       <div className="">
         <Image src={src} width={325} height={230} alt={alt} 
-        className="lg:w-380px md:w-280px"
+        className="lg:w-[380px] md:w-[280px]"
         />
       </div>
       <div className="flex flex-col justify-center w-[260px] md:w-[200px] lg:w-[260px] h-[100] bg-white shadow-xl z-10 -mt-8 p-4">
