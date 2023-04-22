@@ -70,10 +70,10 @@ export default function Blogs({ blogs }: Props) {
                   <div className="flex justify-end mb-4 mr-4">
                     <div className="absolute object-center flex flex-col w-65px -mt-[60px] text-right text-white">
                       <span className="text-4xl font-bold bg-[#0083CA] text-center py-[10px]">
-                        {dateFormat(data.createdAt)}
+                        {dateFormat(data.date)}
                       </span>
                       <span className="text-sm font-bold bg-[#404040] text-center">
-                        {monthFormat(data.createdAt)}
+                        {monthFormat(data.date)}
                       </span>
                     </div>
                   </div>
@@ -112,14 +112,16 @@ export default function Blogs({ blogs }: Props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const response = await prisma.blogs.findMany({
+    where: {
+      status: "Published",
+    },
     select: {
       id: true,
       coverImage: true,
-      content: true,
-      createdAt: true,
-      description: true,
+      date: true,
       title: true,
       slug: true,
+      status: true,
       Category: {
         select: {
           title: true,
@@ -127,7 +129,7 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     },
     orderBy: {
-      createdAt: "desc",
+      date: "desc",
     },
   });
   const blogs = JSON.parse(JSON.stringify(response));

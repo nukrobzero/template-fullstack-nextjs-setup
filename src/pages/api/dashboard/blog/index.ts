@@ -88,6 +88,7 @@ export default async function handler(
         categoryId,
         description,
         date,
+        keywords,
         status,
       } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
@@ -116,6 +117,9 @@ export default async function handler(
               description: description as string,
               coverImage: newPathDB as string,
               content: content as string,
+              date: date as string,
+              keywords: keywords as string,
+              status: status as string,
             },
           });
           return res.status(200).json(response);
@@ -135,16 +139,12 @@ export default async function handler(
           categoryId: categoryId as string,
           description: description as string,
           content: content as string,
+          date: date as string,
+          keywords: keywords as string,
+          status: status as string,
         },
       });
       res.status(200).json(response);
-    } catch (e) {
-      res.status(500).json({ message: "Something went wrong!" });
-    }
-  } else if (req.method === "GET") {
-    try {
-      const getPage = await prisma.blogs.findMany();
-      res.status(200).json(getPage);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }

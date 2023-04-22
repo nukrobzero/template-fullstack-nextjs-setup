@@ -5,7 +5,6 @@ import LayoutAdmin from "../layout/layout";
 
 type Props = {
   page: any;
-  category: any;
   apiurl: string;
   pageTitle: string;
   linkUrl: string;
@@ -13,11 +12,11 @@ type Props = {
 
 export default function TableBlogs({
   page,
-  category,
   apiurl,
   pageTitle,
   linkUrl,
 }: Props) {
+  console.log(page)
   const router = useRouter();
 
   const handelDelete = async (id: string) => {
