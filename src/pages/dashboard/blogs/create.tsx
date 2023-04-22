@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { prisma } from "@/lib/prismadb";
 
 interface Props {
   category: any;
