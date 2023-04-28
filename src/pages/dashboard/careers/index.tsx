@@ -7,7 +7,6 @@ interface Props {
 }
 
 export default function Careers({ page }: Props) {
-  console.log(page);
   return (
     <TableCareers
       page={page}
