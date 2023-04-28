@@ -1,6 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
-import FooterAdmin from "./footer";
-import Link from "next/link";
+import Sidebar from "./sidebar";
 
 export default function LayoutAdmin({ children }: any) {
   const { data: session, status } = useSession();
@@ -14,81 +13,13 @@ export default function LayoutAdmin({ children }: any) {
   }
   //console.log(session);
   return (
-    <div className="flex flex-col h-screen">
-      <div className="bg-gray-800 flex items-center justify-center">
-        <h1 className="text-white text-lg font-bold">logo</h1>
-      </div>
-      <div className="flex flex-grow">
-        <div className="bg-gray-400 w-48 h-full flex-shrink-0">
-          <ul className="p-2">
-            <li className="mb-2">
-              <Link
-                href="/dashboard"
-                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
-              >
-                Dashboard
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/dashboard/service"
-                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
-              >
-                Services
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/dashboard/blogs"
-                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
-              >
-                Blogs
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/dashboard/news-and-activities"
-                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
-              >
-                News & Activities
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/dashboard/careers"
-                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
-              >
-                Careers
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/dashboard/category"
-                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
-              >
-                Category
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="#"
-                className="text-gray-800 hover:text-white hover:bg-gray-800 px-4 py-2 rounded-md block"
-                onClick={() =>
-                  signOut({
-                    callbackUrl: "/",
-                  })
-                }
-              >
-                Log Out
-              </Link>
-            </li>
-          </ul>
+    <div>
+      <main>
+        <div className="flex flex-row bg-gradient-to-r from-rose-200 to-teal-100 min-h-screen">
+          <Sidebar />
+          <div className="mx-auto w-[70%] p-4">{children}</div>
         </div>
-        <div className="flex-grow bg-gray-200 p-4">{children}</div>
-      </div>
-      <div>
-        <FooterAdmin />
-      </div>
+      </main>
     </div>
   );
 }

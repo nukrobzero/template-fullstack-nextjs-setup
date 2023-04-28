@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-color-smp {
+  @apply text-[#0083CA];
+}
+.bg-color-smp {
+  @apply bg-[#0083CA];
+}

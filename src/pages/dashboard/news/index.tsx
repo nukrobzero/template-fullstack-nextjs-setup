@@ -8,7 +8,7 @@ export default function NewsAndActivities() {
           page={undefined}
           apiurl="/api/dashboard/news-and-activities"
           linkUrl="/dashboard/news-and-activities"
-          title="News & Activities"
+          pageTitle="News & Activities"
         />
       </div>
     </div>

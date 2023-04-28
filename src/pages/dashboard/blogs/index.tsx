@@ -31,6 +31,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   const blogs = JSON.parse(JSON.stringify(res));

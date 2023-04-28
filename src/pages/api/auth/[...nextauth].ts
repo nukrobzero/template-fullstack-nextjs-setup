@@ -15,7 +15,15 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    maxAge: 3600,
+    strategy: "jwt",
+  },
+  // session: {
+  //   maxAge: 3600,
+  // },
+  callbacks: {
+    async session({ session, token, user }) {
+      return session; // The return type will match the one returned in `useSession()`
+    },
   },
 };
 
