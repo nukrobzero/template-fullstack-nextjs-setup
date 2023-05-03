@@ -7,24 +7,31 @@ import { FcSearch } from "react-icons/fc";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiDeleteBinLine, RiEditBoxLine } from "react-icons/ri";
 import PopUpBTN from "../etc/popupdelete";
-import ReactPaginate from "react-paginate";
 import AlertDeleteSuccess from "../etc/alertDeleteSuccess";
+import Pagination from "@/components/Pagination";
 
 type Props = {
   page: any;
   apiurl: string;
   pageTitle: string;
-  linkUrl: string;
+  showCategory: boolean;
+  showStatus: boolean;
+  linkURL: string;
 };
 
-export default function TableBlogs({
+export default function TableDefault({
   page,
   apiurl,
   pageTitle,
-  linkUrl,
+  showCategory,
+  showStatus,
+  linkURL,
 }: Props) {
   const router = useRouter();
   const [showAlert, setShowAlert] = useState(false);
+  const [showCategorys, setShowCategory] = useState(showCategory);
+  const [showStatuss, setShowStatus] = useState(showStatus);
+  const [valueDataDelete, setValueDataDelete] = useState("");
 
   const [isOpenPopUpDelete, setIsOpenPopUpDelete] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,37 +39,42 @@ export default function TableBlogs({
   const [currentPage, setCurrentPage] = useState(0);
 
   // Data/page
-  const [perPage, setPerPage] = useState(8);
+  const [perPage, setPerPage] = useState(10);
 
   // filter the blogs based on the search query
-  const filteredBlogs =
+  const filteredData =
     page &&
-    page.filter(
-      (blog: any) =>
-        blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.date.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.Category.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-  const handleSearch = (event: any) => {
-    setSearchQuery(event.target.value);
-  };
+    page
+      .filter(
+        (data: any) =>
+          data.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          data.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          data.createdAt.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+      .slice(currentPage * perPage, (currentPage + 1) * perPage);
 
   const handelDelete = async (id: string) => {
     try {
-      const res = await axios.delete(`${apiurl}/${id}`);
+      const res = await axios.delete(`${apiurl}?id=${id}`);
 
       if (res) {
         setIsOpenPopUpDelete(!isOpenPopUpDelete);
         setShowAlert(!showAlert);
         setTimeout(() => {
           router.reload();
-        }, 1000);
+        }, 100);
       }
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const dateFormat = (data: string): string => {
+    const date: Date = new Date(data);
+    const day: string = ("0" + date.getDate()).slice(-2);
+    const month: string = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year: string = date.getFullYear().toString();
+    return `${day}/${month}/${year}`;
   };
 
   return (
@@ -89,7 +101,7 @@ export default function TableBlogs({
             </div>
           </div>
           <div className="my-4">
-            <Link href={`/dashboard/blogs/create`}>
+            <Link href={`${linkURL}/create`}>
               <button className="flex flex-row justify-center items-center uppercase rounded-md border border-gray-500 focus:outline-none focus:ring-2 px-4 py-2.5 text-sm font-medium hover:text-white hover:hover:bg-gradient-to-r hover:from-sky-400 hover:via-rose-400 hover:to-lime-400 hover:shadow-xl transition-all ease-in-out">
                 <AiOutlinePlus size={18} className="mr-1" />
                 Add
@@ -102,14 +114,18 @@ export default function TableBlogs({
             <thead className="text-xs text-white font-semibold uppercase bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA]">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                  Blog name
+                  Title
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  Category
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Status
-                </th>
+                {showCategorys && (
+                  <th scope="col" className="px-6 py-3">
+                    Category
+                  </th>
+                )}
+                {showStatuss && (
+                  <th scope="col" className="px-6 py-3">
+                    Status
+                  </th>
+                )}
                 <th scope="col" className="px-6 py-3">
                   Created At
                 </th>
@@ -122,31 +138,35 @@ export default function TableBlogs({
               </tr>
             </thead>
             <tbody>
-              {filteredBlogs && filteredBlogs.length === 0 ? (
+              {filteredData && filteredData.length === 0 ? (
                 <tr className="bg-white border-b hover:bg-gray-200">
                   <td colSpan={6} className="text-center py-4">
                     No data found
                   </td>
                 </tr>
               ) : (
-                filteredBlogs &&
-                filteredBlogs.map((blog: any) => (
+                filteredData &&
+                filteredData.map((data: any) => (
                   <tr
-                    key={blog.id}
+                    key={data.id}
                     className="bg-white border-b hover:bg-gray-200"
                   >
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
                     >
-                      {blog.title}
+                      {data.title}
                     </th>
-                    <td className="px-6 py-4">{blog.Category.title}</td>
-                    <td className="px-6 py-4">{blog.status}</td>
-                    <td className="px-6 py-4">{blog.date}</td>
+                    {showCategorys && (
+                      <td className="px-6 py-4">{data.Category.title}</td>
+                    )}
+                    {showStatuss && (
+                      <td className="px-6 py-4">{data.status}</td>
+                    )}
+                    <td className="px-6 py-4">{dateFormat(data.createdAt)}</td>
                     <td className="px-6 py-4">
                       <Link
-                        href={`/dashboard/blogs/${blog.slug}`}
+                        href={`${linkURL}/${data.slug}`}
                         title="Edit"
                         className="font-medium text-blue-500 hover:text-blue-600 flex flex-row justify-center items-center"
                       >
@@ -155,7 +175,10 @@ export default function TableBlogs({
                     </td>
                     <td className="px-6 py-4">
                       <button
-                        onClick={() => setIsOpenPopUpDelete(!isOpenPopUpDelete)}
+                        onClick={() => {
+                          setIsOpenPopUpDelete(!isOpenPopUpDelete),
+                            setValueDataDelete(data.id);
+                        }}
                         title="Delete"
                         className="text-red-600 hover:text-red-800 flex flex-row justify-center items-center"
                       >
@@ -164,7 +187,8 @@ export default function TableBlogs({
                       {isOpenPopUpDelete && (
                         <div>
                           <PopUpBTN
-                            onClickYes={() => handelDelete(blog.id)}
+                            description="Are you sure you want to delete this?"
+                            onClickYes={() => handelDelete(valueDataDelete)}
                             onClickNo={() =>
                               setIsOpenPopUpDelete(!isOpenPopUpDelete)
                             }
@@ -180,20 +204,10 @@ export default function TableBlogs({
         </div>
         {/* Paginate table */}
         <div className="flex justify-center md:justify-end py-4">
-          <ReactPaginate
-            pageCount={Math.ceil(page?.length / perPage)}
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={2}
-            onPageChange={({ selected }) => setCurrentPage(selected)}
-            containerClassName="flex justify-center py-2 px-4 rounded-lg bg-white shadow-md"
-            pageClassName="mx-2"
-            pageLinkClassName="py-2 px-4 rounded-full"
-            activeClassName="bg-[#0083CA] rounded-full text-white"
-            previousClassName="mr-2"
-            nextClassName="ml-2"
-            previousLinkClassName=""
-            nextLinkClassName=""
-            disabledClassName="opacity-50 cursor-not-allowed"
+          <Pagination
+            page={page}
+            perPage={perPage}
+            setCurrentPage={setCurrentPage}
           />
         </div>
       </div>

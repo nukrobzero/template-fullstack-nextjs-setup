@@ -18,7 +18,6 @@ export default async function handler(
         title,
         coverImage,
         content,
-        categoryId,
         description,
         date,
         keywords,
@@ -27,11 +26,10 @@ export default async function handler(
 
       const slug = title.replace(/\s+/g, "-").toLowerCase();
 
-      const response = await prisma.blogs.create({
+      const response = await prisma.news.create({
         data: {
           title: title as string,
           slug: slug as string,
-          categoryId: categoryId as string,
           description: description as string,
           coverImage: coverImage as string,
           content: content as string,
@@ -53,7 +51,6 @@ export default async function handler(
         title,
         coverImage,
         content,
-        categoryId,
         description,
         date,
         keywords,
@@ -62,14 +59,13 @@ export default async function handler(
 
       const slug = title.replace(/\s+/g, "-").toLowerCase();
 
-      const response = await prisma.blogs.update({
+      const response = await prisma.news.update({
         where: {
           id,
         },
         data: {
           title: title as string,
           slug: slug as string,
-          categoryId: categoryId as string,
           description: description as string,
           coverImage: coverImage as string,
           content: content as string,
@@ -107,7 +103,7 @@ export default async function handler(
       const { id } = req.query;
 
       //check have id ?
-      const page = await prisma.blogs.findUnique({
+      const page = await prisma.news.findUnique({
         where: { id: id as string },
         select: {
           id: true,
@@ -126,7 +122,7 @@ export default async function handler(
         });
       }
 
-      const deletePage = await prisma.blogs.delete({
+      const deletePage = await prisma.news.delete({
         where: { id: id as string },
       });
 

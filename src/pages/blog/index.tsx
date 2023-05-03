@@ -56,15 +56,17 @@ export default function Blogs({ blogs }: Props) {
         <Sections>
           <div className="grid xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-10 mx-auto my-24">
             {blogs.map((data: any) => (
-              <div key={data.id} className="group w-[280px] h-[470px]">
+              <div key={data.id} className="group">
                 <Link href={`blog/${data.slug}`}>
-                  <div className="overflow-hidden bg-cover bg-no-repeat border shadow-lg">
+                  <div className="overflow-hidden bg-cover bg-no-repeat border shadow-lg !w-[280px] !h-[350px]">
                     <Image
-                      src={`/${data.coverImage}`}
+                      src={`https://drive.google.com/uc?export=view&id=${data.coverImage}`}
                       width={280}
                       height={350}
-                      alt="test"
-                      className="transform hover:scale-110 transition duration-500 ease-in-out group-hover:scale-110"
+                      alt={data.title}
+                      layout="responsive"
+                      style={{ objectFit: "cover" }}
+                      className="!w-[280px] !h-[350px] transform hover:scale-110 transition duration-500 ease-in-out group-hover:scale-110"
                     />
                   </div>
                   <div className="flex justify-end mb-4 mr-4">

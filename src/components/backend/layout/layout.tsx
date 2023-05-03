@@ -15,7 +15,7 @@ export default function LayoutAdmin({ children }: any) {
   return (
     <div>
       <main>
-        <div className="flex flex-row bg-gradient-to-r from-rose-200 to-teal-100 min-h-screen">
+        <div className="flex flex-row bg-gradient-to-r from-rose-100 to-teal-100 min-h-screen">
           <Sidebar />
           <div className="mx-auto w-[70%] p-4">{children}</div>
         </div>

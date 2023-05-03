@@ -10,11 +10,10 @@ import PopUpBTN from "../etc/popupdelete";
 
 interface Props {
   page: any;
-  category: any;
   type: string;
 }
 
-export default function FormBlog({ page, category, type }: Props) {
+export default function FormNew({ page, type }: Props) {
   const router = useRouter();
   const [showupload, setShowupload] = useState(false);
   const [content, setContent] = useState(
@@ -34,9 +33,7 @@ export default function FormBlog({ page, category, type }: Props) {
   const [status, setStatus] = useState(
     page === undefined ? "Published" : page.status
   );
-  const [categoryId, setCategoryId] = useState(
-    page === undefined ? "" : page.categoryId
-  );
+
   const [coverImageToURL, setCoverImageToURL] = useState(
     page === undefined ? "" : page.coverImage
   );
@@ -51,8 +48,7 @@ export default function FormBlog({ page, category, type }: Props) {
     title.trim() !== "" &&
     content.trim() !== "" &&
     description.trim() !== "" &&
-    keywords.trim() !== "" &&
-    categoryId.trim() !== "";
+    keywords.trim() !== "";
 
   if (isFormValid !== requiredFieldsFilledIn) {
     setIsFormValid(requiredFieldsFilledIn);
@@ -66,7 +62,7 @@ export default function FormBlog({ page, category, type }: Props) {
 
       try {
         const res: AxiosResponse<string> = await axios.post(
-          `/api/dashboard/blog/uploads`,
+          `/api/dashboard/news/uploads`,
           formData,
           {
             onUploadProgress: (progressEvent: AxiosProgressEvent) => {
@@ -92,7 +88,7 @@ export default function FormBlog({ page, category, type }: Props) {
     console.log(fileId);
     try {
       const res = await axios.delete(
-        `/api/dashboard/blog/uploads?fileId=${fileId}`
+        `/api/dashboard/news/uploads?fileId=${fileId}`
       );
 
       if (res) {
@@ -113,18 +109,17 @@ export default function FormBlog({ page, category, type }: Props) {
       description,
       date,
       keywords,
-      categoryId,
       status,
       coverImage: coverImageToURL,
     };
 
     e.preventDefault();
     try {
-      const res = await axios.post(`/api/dashboard/blog`, data);
+      const res = await axios.post(`/api/dashboard/news`, data);
       if (res) {
         setShowAlert(!showAlert);
         setTimeout(() => {
-          router.push("/dashboard/blogs/blogs-list");
+          router.push("/dashboard/news");
         }, 400);
       }
     } catch (error) {
@@ -141,18 +136,17 @@ export default function FormBlog({ page, category, type }: Props) {
       description,
       date,
       keywords,
-      categoryId,
       status,
       coverImage: coverImageToURL,
     };
 
     e.preventDefault();
     try {
-      const res = await axios.put(`/api/dashboard/blog`, data);
+      const res = await axios.put(`/api/dashboard/news`, data);
       if (res) {
         setShowAlert(!showAlert);
         setTimeout(() => {
-          router.push("/dashboard/blogs/blogs-list");
+          router.push("/dashboard/news");
         }, 400);
       }
     } catch (error) {
@@ -171,7 +165,7 @@ export default function FormBlog({ page, category, type }: Props) {
             className="flex flex-col justify-center space-y-4 mt-4 bg-white p-12 rounded-lg shadow-lg"
           >
             <div className="bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] rounded-lg text-white py-2 px-4 shadow-lg flex items-center cursor-default mb-4">
-              <h1 className="text-xl font-semibold">{type} Blog</h1>
+              <h1 className="text-xl font-semibold">{type} News</h1>
             </div>
             <div className="space-y-2">
               <label className="font-bold">Title</label>
@@ -213,22 +207,6 @@ export default function FormBlog({ page, category, type }: Props) {
                 required
                 className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent"
               />
-            </div>
-            <div className="space-y-2">
-              <label className="font-bold">Category</label>
-              <select
-                className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent"
-                required
-                onChange={(e: any) => setCategoryId(e.target.value)}
-                value={categoryId}
-              >
-                <option value="">Please Select</option>
-                {category?.map((data: any) => (
-                  <option key={data.id} value={data.id}>
-                    {data.title}
-                  </option>
-                ))}
-              </select>
             </div>
             <div className="space-y-2">
               <label className="font-bold">Date</label>
@@ -359,7 +337,7 @@ export default function FormBlog({ page, category, type }: Props) {
               >
                 {type}
               </button>
-              <Link href={`/dashboard/blogs/blogs-list`}>
+              <Link href={`/dashboard/blogs`}>
                 <button
                   type="button"
                   className="rounded-md border border-gray-500 focus:outline-none focus:ring-2 px-4 py-2.5 text-sm font-medium hover:text-white hover:bg-gradient-to-r from-green-300 to-purple-400 hover:shadow-xl transition-all ease-in-out"

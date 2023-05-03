@@ -52,6 +52,19 @@ export default async function handler(
     } catch (e) {
       res.status(500).json({ message: "Something went wrong!" });
     }
+  } else if (req.method === "DELETE") {
+    const { id } = req.query;
+    const page = await prisma.careers.findUnique({
+      where: { id: id as string },
+    });
+    if (!page) {
+      return res.status(404).json({ message: "Page not found." });
+    }
+
+    const deletePage = await prisma.careers.delete({
+      where: { id: id as string },
+    });
+    res.status(200).json(deletePage);
   }
 
   // HTTP method not supported!

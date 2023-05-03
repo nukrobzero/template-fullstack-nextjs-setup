@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { useState } from "react";
-import { HiOutlineCog, HiHome, HiOutlineNewspaper } from "react-icons/hi";
+import {
+  HiOutlineCog,
+  HiHome,
+  HiOutlineNewspaper,
+  HiOutlineClipboardList,
+} from "react-icons/hi";
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
@@ -8,12 +13,18 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { BiLogOut, BiCategory } from "react-icons/bi";
 import { ImBlogger } from "react-icons/im";
-import { MdOutlineHomeWork } from "react-icons/md";
+import {
+  MdOutlineHomeWork,
+  MdOutlineProductionQuantityLimits,
+} from "react-icons/md";
+import { TbBrandAirtable } from "react-icons/tb";
 import { signOut } from "next-auth/react";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuProductsOpen, setMenuProductsOpen] = useState(false);
+  const [menuBlogsOpen, setMenuBlogsOpen] = useState(false);
 
   return (
     <div className={`${isOpen ? "w-64" : "w-16"} transition-all shadow-lg`}>
@@ -54,8 +65,71 @@ export default function Sidebar() {
             />
             <span className={`${isOpen ? "block" : "hidden"}`}>Dashboard</span>
           </Link>
-          <Link
-            href="/dashboard/blogs"
+          <button
+            onClick={() => setMenuProductsOpen(!menuProductsOpen)}
+            className={`flex flex-row items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 px-2 rounded-lg transition duration-300 ease-in-out ${
+              isOpen ? "" : "justify-center items-center"
+            }`}
+            title="Products"
+          >
+            <MdOutlineProductionQuantityLimits
+              className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
+              size={30}
+            />
+            <span className={`${isOpen ? "block space-x-4" : "hidden"}`}>
+              <span>Products</span>
+              <IoIosArrowDown className={`inline-block`} />
+            </span>
+          </button>
+          {menuProductsOpen && (
+            <div>
+              <Link
+                href="/dashboard/products/products-list"
+                className={`flex flex-row ${
+                  isOpen ? "justify-start px-4" : "justify-center"
+                } items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 rounded-lg transition duration-300 ease-in-out cursor-pointer`}
+                title="Products List"
+              >
+                <HiOutlineClipboardList
+                  className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
+                  size={20}
+                />
+                <span className={`${isOpen ? "block" : "hidden"}`}>
+                  Products List
+                </span>
+              </Link>
+              <Link
+                href="/dashboard/products/brands"
+                className={`flex flex-row ${
+                  isOpen ? "justify-start px-4" : "justify-center"
+                } items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 rounded-lg transition duration-300 ease-in-out cursor-pointer`}
+                title="brands"
+              >
+                <TbBrandAirtable
+                  className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
+                  size={20}
+                />
+                <span className={`${isOpen ? "block" : "hidden"}`}>Brands</span>
+              </Link>
+              <Link
+                href="/dashboard/products/category"
+                className={`flex flex-row ${
+                  isOpen ? "justify-start px-4" : "justify-center"
+                } items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 rounded-lg transition duration-300 ease-in-out cursor-pointer`}
+                title="Products Category"
+              >
+                <BiCategory
+                  className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
+                  size={20}
+                />
+                <span className={`${isOpen ? "block" : "hidden"}`}>
+                  Products Category
+                </span>
+              </Link>
+            </div>
+          )}
+          <button
+            onClick={() => setMenuBlogsOpen(!menuBlogsOpen)}
             className={`flex flex-row items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 px-2 rounded-lg transition duration-300 ease-in-out ${
               isOpen ? "" : "justify-center items-center"
             }`}
@@ -65,8 +139,45 @@ export default function Sidebar() {
               className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
               size={30}
             />
-            <span className={`${isOpen ? "block" : "hidden"}`}>Blogs</span>
-          </Link>
+            <span className={`${isOpen ? "block space-x-4" : "hidden"}`}>
+              <span>Blogs</span>
+              <IoIosArrowDown className={`inline-block`} />
+            </span>
+          </button>
+          {menuBlogsOpen && (
+            <div>
+              <Link
+                href="/dashboard/blogs/blogs-list"
+                className={`flex flex-row ${
+                  isOpen ? "justify-start px-4" : "justify-center"
+                } items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 rounded-lg transition duration-300 ease-in-out cursor-pointer`}
+                title="Blogs List"
+              >
+                <HiOutlineClipboardList
+                  className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
+                  size={20}
+                />
+                <span className={`${isOpen ? "block" : "hidden"}`}>
+                  Blogs List
+                </span>
+              </Link>
+              <Link
+                href="/dashboard/blogs/category"
+                className={`flex flex-row ${
+                  isOpen ? "justify-start px-4" : "justify-center"
+                } items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 rounded-lg transition duration-300 ease-in-out cursor-pointer`}
+                title="Blogs Category"
+              >
+                <BiCategory
+                  className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
+                  size={20}
+                />
+                <span className={`${isOpen ? "block" : "hidden"}`}>
+                  Blogs Category
+                </span>
+              </Link>
+            </div>
+          )}
           <Link
             href="/dashboard/news"
             className={`flex flex-row items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 px-2 rounded-lg transition duration-300 ease-in-out ${
@@ -79,19 +190,6 @@ export default function Sidebar() {
               size={30}
             />
             <span className={`${isOpen ? "block" : "hidden"}`}>News</span>
-          </Link>
-          <Link
-            href="/dashboard/category"
-            className={`flex flex-row items-center hover:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-yellow-400 via-gray-50 to-teal-600 py-4 px-2 rounded-lg transition duration-300 ease-in-out ${
-              isOpen ? "" : "justify-center items-center"
-            }`}
-            title="Category"
-          >
-            <BiCategory
-              className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
-              size={30}
-            />
-            <span className={`${isOpen ? "block" : "hidden"}`}>Category</span>
           </Link>
           <Link
             href="/dashboard/careers"
@@ -117,9 +215,9 @@ export default function Sidebar() {
               className={`inline-block ${isOpen ? "mr-2" : "mr-0"}`}
               size={30}
             />
-            <span className={`${isOpen ? "block" : "hidden"}`}>
-              Settings
-              <IoIosArrowDown className={`inline-block ml-20`} />
+            <span className={`${isOpen ? "block space-x-4" : "hidden"}`}>
+              <span>Settings</span>
+              <IoIosArrowDown className={`inline-block`} />
             </span>
           </button>
           {menuOpen && (

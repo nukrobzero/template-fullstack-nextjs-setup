@@ -3,37 +3,36 @@ import { prisma } from "@/lib/prismadb";
 import TableDefault from "@/components/backend/tables/table_default";
 
 interface Props {
-  page: any;
+  category: any;
 }
 
-export default function Careers({ page }: Props) {
+export default function Category({ category }: Props) {
   return (
     <TableDefault
-      page={page}
-      apiurl={`/api/dashboard/careers`}
-      pageTitle="Careers"
+      apiurl={`/api/dashboard/blog/category`}
+      linkURL={`/dashboard/blogs/category`}
+      page={category}
+      pageTitle="Blogs Category"
       showCategory={false}
-      showStatus={true}
+      showStatus={false}
     />
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await prisma.careers.findMany({
+  const res = await prisma.category.findMany({
     select: {
       id: true,
       title: true,
       slug: true,
-      status: true,
       createdAt: true,
     },
     orderBy: {
       createdAt: "desc",
     },
   });
-  const page = JSON.parse(JSON.stringify(res));
-
+  const category = JSON.parse(JSON.stringify(res));
   return {
-    props: { page },
+    props: { category },
   };
 };

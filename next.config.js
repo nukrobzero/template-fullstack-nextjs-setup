@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "drive.google.com"],
+    formats: ["image/webp"],
   },
 };
 

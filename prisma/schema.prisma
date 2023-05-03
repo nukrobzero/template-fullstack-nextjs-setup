@@ -59,53 +59,49 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Services {
-  id            String          @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  slug          String
-  servicesimage ServicesImage[]
-  content       String?
-  description   String
-  formNumber    Int
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  subservices   Subservices[]
-}
+// model Services {
+//   id                 String               @id @default(auto()) @map("_id") @db.ObjectId
+//   machiningSolutions MachiningSolutions[]
+// }
 
-model ServicesImage {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  Services   Services? @relation(fields: [servicesId], references: [id], onDelete: Cascade)
-  servicesId String?   @db.ObjectId
-  title      String
-  createdAt  DateTime  @default(now())
-}
+// model MachiningSolutions {
+//   id                        String                      @id @default(auto()) @map("_id") @db.ObjectId
+//   servicesID                String                      @db.ObjectId
+//   title                     String
+//   slug                      String
+//   description               String
+//   machiningSolutionsImage   MachiningSolutionsImage[]
+//   machiningSolutionsContent MachiningSolutionsContent[]
+//   metaDescription           String
+//   keyword                   String
+//   createdAt                 DateTime                    @default(now())
+//   services                  Services?                   @relation(fields: [servicesID], references: [id], onDelete: Cascade)
+// }
 
-model Subservices {
-  id               String             @id @default(auto()) @map("_id") @db.ObjectId
-  ServicesId       String?            @db.ObjectId
-  title            String
-  slug             String
-  subservicesimage SubservicesImage[]
-  content          String?
-  metaDescription  String
-  formNumber       Int
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  Services         Services?          @relation(fields: [ServicesId], references: [id], onDelete: Cascade)
-}
+// model MachiningSolutionsImage {
+//   id                   String              @id @default(auto()) @map("_id") @db.ObjectId
+//   machiningSolutionsID String              @db.ObjectId
+//   title                String
+//   description          String
+//   coverImage           String
+//   createdAt            DateTime            @default(now())
+//   machiningSolutions   MachiningSolutions? @relation(fields: [machiningSolutionsID], references: [id], onDelete: Cascade)
+// }
 
-model SubservicesImage {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
-  Subservices   Subservices? @relation(fields: [subservicesId], references: [id], onDelete: Cascade)
-  subservicesId String?      @db.ObjectId
-  title         String
-  createdAt     DateTime     @default(now())
-}
+// model MachiningSolutionsContent {
+//   id                   String              @id @default(auto()) @map("_id") @db.ObjectId
+//   machiningSolutionsId String?             @db.ObjectId
+//   content              String?
+//   url                  String?
+//   MachiningSolutions   MachiningSolutions? @relation(fields: [machiningSolutionsId], references: [id])
+// }
 
 model Category {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String
   title       String
   description String
+  createdAt   DateTime @default(now())
   Blogs       Blogs[]
 }
 

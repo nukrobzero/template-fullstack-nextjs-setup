@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { prisma } from "@/lib/prismadb";
-import TableBlogs from "@/components/backend/tables/table_Blogs";
+import TableDefault from "@/components/backend/tables/table_default";
 
 interface BlogsProps {
   blogs: any;
@@ -8,11 +8,13 @@ interface BlogsProps {
 
 export default function Blogs({ blogs }: BlogsProps) {
   return (
-    <TableBlogs
+    <TableDefault
       page={blogs}
-      pageTitle="Blogs"
+      pageTitle="Blogs List"
       apiurl={`/api/dashboard/blog`}
-      linkUrl="/dashboard/blogs"
+      linkURL={`/dashboard/blogs/blogs-list`}
+      showCategory={true}
+      showStatus={true}
     />
   );
 }
@@ -22,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     select: {
       id: true,
       title: true,
-      date: true,
+      createdAt: true,
       slug: true,
       status: true,
       Category: {

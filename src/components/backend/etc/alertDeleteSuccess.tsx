@@ -4,7 +4,7 @@ export default function AlertDeleteSuccess() {
   return (
     <div className="fixed top-10 right-10 z-50 transition-all ease-in duration-400">
       <div
-        className="flex flex-row justify-center items-center space-x-2 p-8 mb-4 text-sm font-semibold text-red-800 border border-red-300 rounded-lg bg-red-50 bg-opacity-90"
+        className="flex flex-row justify-center items-center space-x-2 p-8 mb-4 text-sm font-semibold text-white border border-red-600 rounded-lg bg-red-700 bg-opacity-90"
         role="alert"
       >
         <IoMdAlert size={30} />
