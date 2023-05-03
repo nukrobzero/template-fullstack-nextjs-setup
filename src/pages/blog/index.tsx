@@ -60,7 +60,7 @@ export default function Blogs({ blogs }: Props) {
                 <Link href={`blog/${data.slug}`}>
                   <div className="overflow-hidden bg-cover bg-no-repeat border shadow-lg !w-[280px] !h-[350px]">
                     <Image
-                      src={`https://drive.google.com/uc?export=view&id=${data.coverImage}`}
+                      src={`https://drive.google.com/uc?id=${data.coverImage}`}
                       width={280}
                       height={350}
                       alt={data.title}

@@ -292,12 +292,13 @@ export default function FormBlog({ page, category, type }: Props) {
                     }
                   >
                     <Image
-                      src={`https://drive.google.com/uc?export=view&id=${coverImageToURL}`}
+                      src={`https://drive.google.com/uc?id=${coverImageToURL}`}
                       layout="responsive"
                       width={800}
                       height={400}
                       alt={coverImageToURL}
                       style={{ objectFit: "cover" }}
+                      unoptimized={true}
                       className="rounded-md !w-[280px] !h-[350px]"
                     />
                     <button
