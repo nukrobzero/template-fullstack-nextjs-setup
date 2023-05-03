@@ -12,6 +12,7 @@ export default function NewsAndActivities({ news }: any) {
         <TableDefault
           page={news}
           apiurl="/api/dashboard/news"
+          linkURL={`/dashboard/news`}
           pageTitle="News"
           showCategory={false}
           showStatus={true}

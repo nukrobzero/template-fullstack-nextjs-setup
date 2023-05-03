@@ -2,21 +2,21 @@
 // import { prisma } from "@/lib/prismadb";
 // import SubserviceForm from "@/components/backend/SubServiceDash";
 
-// type Props = {
-//   page: any;
-// };
+type Props = {
+  page: any;
+};
 
-// export default function SubServicePage({ page }: Props) {
-//   return (
-//     <div>
-//       <SubserviceForm
-//         page={page}
-//         apiurl="/api/dashboard/subService"
-//         titlePage="Sub Service"
-//       />
-//     </div>
-//   );
-// }
+export default function SubServicePage({ page }: Props) {
+  return (
+    <div>
+      {/* <SubserviceForm
+        page={page}
+        apiurl="/api/dashboard/subService"
+        titlePage="Sub Service"
+      /> */}
+    </div>
+  );
+}
 
 // export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 //   const slug = params?.slug as string;

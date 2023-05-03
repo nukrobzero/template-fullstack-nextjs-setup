@@ -11,6 +11,7 @@ export default function Careers({ page }: Props) {
     <TableDefault
       page={page}
       apiurl={`/api/dashboard/careers`}
+      linkURL={`/dashboard/careers`}
       pageTitle="Careers"
       showCategory={false}
       showStatus={true}
