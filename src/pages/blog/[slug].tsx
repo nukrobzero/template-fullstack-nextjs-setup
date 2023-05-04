@@ -148,7 +148,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   };
 };
 
@@ -198,5 +198,6 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
 
   return {
     props: { blogPost, category, recentPost },
+    revalidate: 20,
   };
 };
