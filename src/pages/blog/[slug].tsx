@@ -1,6 +1,4 @@
-"use client";
-
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import { prisma } from "@/lib/prismadb";
 import Layout from "@/components/frontend/layout/layout";
 import Headers from "@/components/headerAllpage";

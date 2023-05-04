@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 import { prisma } from "@/lib/prismadb";
 import Layout from "@/components/frontend/layout/layout";
 import Headers from "@/components/headerAllpage";
