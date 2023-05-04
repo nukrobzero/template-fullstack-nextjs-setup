@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FiArrowDownRight } from "react-icons/fi";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import NotFound from "../404";
 
 interface Props {
@@ -15,6 +16,11 @@ interface Props {
 }
 
 export default function Blog({ blogPost, category, recentPost }: Props) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   if (!blogPost) return <NotFound />;
 
   return (
@@ -146,7 +152,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: "blocking",
+    fallback: true,
   };
 };
 
