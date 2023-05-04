@@ -1,5 +1,3 @@
-"use client";
-
 import { GetStaticProps } from "next";
 import { prisma } from "@/lib/prismadb";
 import Layout from "@/components/frontend/layout/layout";
@@ -60,7 +58,7 @@ export default function Blogs({ blogs }: Props) {
                 <Link href={`blog/${data.slug}`}>
                   <div className="overflow-hidden bg-cover bg-no-repeat border shadow-lg !w-[280px] !h-[350px]">
                     <Image
-                      src={`https://drive.google.com/uc?id=${data.coverImage}`}
+                      src={data.coverImage}
                       width={280}
                       height={350}
                       alt={data.title}

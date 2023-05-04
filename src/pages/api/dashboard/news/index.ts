@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/react";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { google } from "googleapis";
+import { v2 as cloudinary } from "cloudinary";
 import { prisma } from "@/lib/prismadb";
 
 export default async function handler(
@@ -81,24 +81,6 @@ export default async function handler(
       return res.status(500).json({ message: "Something went wrong." });
     }
   } else if (req.method === "DELETE") {
-    const CLIENT_ID = process.env.GOOGLE_DRIVE_CLIENT_ID;
-    const CLIENT_SECRET = process.env.GOOGLE_DRIVE_CLIENT_SECRET;
-    const REDIRECT_URI = process.env.GOOGLE_DRIVE_REDIRECT_URI;
-    const REFRESH_TOKEN = process.env.GOOGLE_DRIVE_REFRESH_TOKEN;
-
-    const oauth2client = new google.auth.OAuth2(
-      CLIENT_ID,
-      CLIENT_SECRET,
-      REDIRECT_URI
-    );
-
-    oauth2client.setCredentials({ refresh_token: REFRESH_TOKEN });
-
-    const drive = google.drive({
-      version: "v3",
-      auth: oauth2client,
-    });
-
     try {
       const { id } = req.query;
 
@@ -116,22 +98,38 @@ export default async function handler(
 
       const coverImage = page.coverImage;
       if (coverImage !== "") {
-        //Delete Image in Google Drive
-        await drive.files.delete({
-          fileId: coverImage as string,
+        //Delete Image in Cloudinary
+        const cutOriginalURL = coverImage.substring(
+          coverImage.lastIndexOf("/") + 1,
+          coverImage.lastIndexOf(".")
+        );
+        const cloudinaryUrl = `sumipol-image/${cutOriginalURL}`;
+        const publicId = cloudinaryUrl;
+
+        cloudinary.uploader.destroy(publicId, async function (error, result) {
+          if (error) {
+            console.log(error);
+          } else {
+            if (await result) {
+              const deletePage = await prisma.news.delete({
+                where: { id: id as string },
+              });
+              res.status(200).json(deletePage);
+            }
+          }
         });
+      } else {
+        const deletePage = await prisma.news.delete({
+          where: { id: id as string },
+        });
+
+        res.status(200).json(deletePage);
       }
-
-      const deletePage = await prisma.news.delete({
-        where: { id: id as string },
-      });
-
-      res.status(200).json(deletePage);
     } catch (error) {
       console.log(error);
+      res.status(500).send(error);
     }
   }
-
   // HTTP method not supported!
   else {
     res.setHeader("Allow", ["GET"]);

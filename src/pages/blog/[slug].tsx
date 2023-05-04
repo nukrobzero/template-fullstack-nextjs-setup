@@ -38,7 +38,7 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
                 <div className="container lg:max-w-[753px] prose prose-zinc lg:prose-lg mx-auto">
                   <div>
                     <Image
-                      src={`https://drive.google.com/uc?id=${blogPost.coverImage}`}
+                      src={blogPost.coverImage}
                       width={753}
                       height={142}
                       alt={blogPost.title}
@@ -109,7 +109,7 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
                         >
                           <div>
                             <Image
-                              src={`/${recentPost.coverImage}`}
+                              src={recentPost.coverImage}
                               width={100}
                               height={100}
                               alt={recentPost.title}

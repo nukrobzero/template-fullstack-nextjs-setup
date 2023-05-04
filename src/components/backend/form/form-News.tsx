@@ -76,7 +76,8 @@ export default function FormNew({ page, type }: Props) {
         );
 
         if (res) {
-          setCoverImageToURL(res.data);
+          // @ts-ignore
+          setCoverImageToURL(res.data.url);
         }
       } catch (err) {
         console.log(err);
@@ -84,11 +85,11 @@ export default function FormNew({ page, type }: Props) {
     }
   };
 
-  const handelChangeImage = async (fileId: string) => {
-    console.log(fileId);
+  const handelChangeImage = async (imageURL: string) => {
+    console.log(imageURL);
     try {
       const res = await axios.delete(
-        `/api/dashboard/news/uploads?fileId=${fileId}`
+        `/api/dashboard/news/uploads?imageURL=${imageURL}`
       );
 
       if (res) {
@@ -270,7 +271,7 @@ export default function FormNew({ page, type }: Props) {
                     }
                   >
                     <Image
-                      src={`https://drive.google.com/uc?export=view&id=${coverImageToURL}`}
+                      src={coverImageToURL}
                       layout="responsive"
                       width={800}
                       height={400}

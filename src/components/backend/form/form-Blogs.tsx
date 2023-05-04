@@ -40,6 +40,7 @@ export default function FormBlog({ page, category, type }: Props) {
   const [coverImageToURL, setCoverImageToURL] = useState(
     page === undefined ? "" : page.coverImage
   );
+
   const [isFormValid, setIsFormValid] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [isOpenPopUpDelete, setIsOpenPopUpDelete] = useState(false);
@@ -80,7 +81,8 @@ export default function FormBlog({ page, category, type }: Props) {
         );
 
         if (res) {
-          setCoverImageToURL(res.data);
+          // @ts-ignore
+          setCoverImageToURL(res.data.url);
         }
       } catch (err) {
         console.log(err);
@@ -88,11 +90,11 @@ export default function FormBlog({ page, category, type }: Props) {
     }
   };
 
-  const handelChangeImage = async (fileId: string) => {
-    console.log(fileId);
+  const handelChangeImage = async (imageURL: string) => {
+    console.log(imageURL);
     try {
       const res = await axios.delete(
-        `/api/dashboard/blog/uploads?fileId=${fileId}`
+        `/api/dashboard/blog/uploads?imageURL=${imageURL}`
       );
 
       if (res) {
@@ -292,7 +294,7 @@ export default function FormBlog({ page, category, type }: Props) {
                     }
                   >
                     <Image
-                      src={`https://drive.google.com/uc?id=${coverImageToURL}`}
+                      src={coverImageToURL}
                       layout="responsive"
                       width={800}
                       height={400}
