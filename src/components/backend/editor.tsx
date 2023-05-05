@@ -17,9 +17,7 @@ export default function Editor({ value, onChange }: EditorProps) {
     formData.append("file", file);
     try {
       const response = await axios.post(`/api/uploadcloudinary`, formData);
-      console.log(response);
       const imageUrl = response.data.secure_url;
-      console.log(imageUrl);
       return imageUrl;
     } catch (err) {
       console.log(err);
@@ -37,11 +35,41 @@ export default function Editor({ value, onChange }: EditorProps) {
         defaultValue={value}
         onChange={onChange}
         setOptions={{
+          resizingBar: false,
           buttonList: [
-            ["image", "video", "link"],
-            ["bold", "underline", "italic", "strike"],
-            ["align", "list", "lineHeight"],
-            ["fontColor", "hiliteColor"],
+            [
+              "undo",
+              "redo",
+              "formatBlock",
+              "fontSize",
+              "paragraphStyle",
+              "blockquote",
+              "bold",
+              "underline",
+              "italic",
+              "strike",
+              "subscript",
+              "superscript",
+              "fontColor",
+              "hiliteColor",
+              "textStyle",
+              "removeFormat",
+              "outdent",
+              "indent",
+              "align",
+              "horizontalRule",
+              "list",
+              "lineHeight",
+              "table",
+              "link",
+              "image",
+              "video",
+              "fullScreen",
+              "showBlocks",
+              "codeView",
+              "preview",
+              "print",
+            ],
           ],
         }}
         onImageUploadBefore={(
