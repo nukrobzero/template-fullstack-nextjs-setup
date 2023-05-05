@@ -55,12 +55,12 @@ export default async function handler(
       const file = req.file;
       // Create a readable stream from buffer
       const readableStream = new stream.PassThrough();
-      const convert = readableStream.end(file.buffer);
+      readableStream.end(file.buffer);
       // Upload file to Cloudinary using stream
 
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          upload_preset: "sumipol-image",
+          upload_preset: process.env.CLOUDINARY_CLOUD_PRESET,
         },
         (error, result) => {
           if (result) {
@@ -86,7 +86,7 @@ export default async function handler(
         //@ts-ignore
         imageURL.lastIndexOf(".")
       );
-      const cloudinaryUrl = `sumipol-image/${cutOriginalURL}`;
+      const cloudinaryUrl = `${process.env.CLOUDINARY_CLOUD_PRESET}/${cutOriginalURL}`;
 
       const publicId = cloudinaryUrl;
 

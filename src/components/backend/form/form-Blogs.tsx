@@ -67,7 +67,7 @@ export default function FormBlog({ page, category, type }: Props) {
 
       try {
         const res: AxiosResponse<string> = await axios.post(
-          `/api/dashboard/blog/uploads`,
+          `/api/uploadcloudinary`,
           formData,
           {
             onUploadProgress: (progressEvent: AxiosProgressEvent) => {
@@ -82,7 +82,7 @@ export default function FormBlog({ page, category, type }: Props) {
 
         if (res) {
           // @ts-ignore
-          setCoverImageToURL(res.data.url);
+          setCoverImageToURL(res.data.secure_url);
         }
       } catch (err) {
         console.log(err);
@@ -91,10 +91,9 @@ export default function FormBlog({ page, category, type }: Props) {
   };
 
   const handelChangeImage = async (imageURL: string) => {
-    console.log(imageURL);
     try {
       const res = await axios.delete(
-        `/api/dashboard/blog/uploads?imageURL=${imageURL}`
+        `/api/uploadcloudinary?imageURL=${imageURL}`
       );
 
       if (res) {

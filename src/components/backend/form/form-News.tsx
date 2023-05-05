@@ -62,7 +62,7 @@ export default function FormNew({ page, type }: Props) {
 
       try {
         const res: AxiosResponse<string> = await axios.post(
-          `/api/dashboard/news/uploads`,
+          `/api/uploadcloudinary`,
           formData,
           {
             onUploadProgress: (progressEvent: AxiosProgressEvent) => {
@@ -77,7 +77,7 @@ export default function FormNew({ page, type }: Props) {
 
         if (res) {
           // @ts-ignore
-          setCoverImageToURL(res.data.url);
+          setCoverImageToURL(res.data.secure_url);
         }
       } catch (err) {
         console.log(err);
@@ -89,7 +89,7 @@ export default function FormNew({ page, type }: Props) {
     console.log(imageURL);
     try {
       const res = await axios.delete(
-        `/api/dashboard/news/uploads?imageURL=${imageURL}`
+        `/api/uploadcloudinary?imageURL=${imageURL}`
       );
 
       if (res) {
