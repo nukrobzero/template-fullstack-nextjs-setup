@@ -19,27 +19,27 @@ export default function Products({ products }: ProductsProps) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const res = await prisma.products.findMany({
-//     select: {
-//       id: true,
-//       title: true,
-//       createdAt: true,
-//       slug: true,
-//       status: true,
-//       Category: {
-//         select: {
-//           title: true,
-//         },
-//       },
-//     },
-//     orderBy: {
-//       createdAt: "desc",
-//     },
-//   });
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await prisma.products.findMany({
+    select: {
+      id: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      status: true,
+      category: {
+        select: {
+          title: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
-//   const products = JSON.parse(JSON.stringify(res));
-//   return {
-//     props: { products },
-//   };
-// };
+  const products = JSON.parse(JSON.stringify(res));
+  return {
+    props: { products },
+  };
+};

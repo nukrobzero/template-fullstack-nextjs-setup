@@ -5,10 +5,10 @@ import PostGrids from "./products/products-grid";
 
 export default function Products() {
   return (
-    <div className="max-w-[1920px] mx-auto">
+    <section className="max-w-screen-2xl mx-auto">
       <div className="bg-[#FAF8F8] flex flex-wrap absolute w-full max-w-4xl md:w-[750px] h-64 md:h-[24rem] -z-10"></div>
       <Sections>
-        <div className="flex md:flex-row flex-col justify-between md:space-x-32 space-x-none space-y-4 md:space-y-none py-8">
+        <div className="flex md:flex-row flex-col justify-between md:space-x-32 space-x-none space-y-4 md:space-y-none py-12">
           <div className="flex flex-col items-start justify-start w-full">
             <div className="flex lg:flex-row flex-col justify-center">
               <div className="flex flex-col justify-center items-start">
@@ -22,7 +22,7 @@ export default function Products() {
               </div>
               <div>
                 <Image
-                  src={`/home/products/Logo-SMP-Agile-Technology.png`}
+                  src={`https://res.cloudinary.com/sumipol/image/upload/v1685075514/sumipol-web-image/Logo-SMP-Agile-Technology-only-logo_emyn8f.webp`}
                   width={90}
                   height={90}
                   alt="Logo-SMP-Agile-Technology"
@@ -47,7 +47,7 @@ export default function Products() {
               Learn more
               <span className="flex flex-col items-center justify-center ml-8">
                 <Image
-                  src={`/home/products/Arrow-1.png`}
+                  src={`https://res.cloudinary.com/sumipol/image/upload/v1685075768/sumipol-web-image/Arrow-1_rcuoqp.webp`}
                   width={50}
                   height={0}
                   alt="arrow"
@@ -60,7 +60,7 @@ export default function Products() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-12 gap-8 justify-center items-center ">
             <PostGrids
               title="MACHINING"
-              src="/home/products/Procurement_Service-1.jpg"
+              src="https://res.cloudinary.com/sumipol/image/upload/v1685075814/sumipol-web-image/Procurement_Service-1_psihdw.jpg"
               alt="machining"
               titleDetail="เครื่องมือตัดแต่งขึ้นรูปโลหะ"
               details="เครื่องมือตัดสำหรับงานกลึง กัด เจาะ ต๊าปเกลียว ทุกประเภท
@@ -69,7 +69,7 @@ export default function Products() {
             />
             <PostGrids
               title="MACHINING"
-              src="/home/products/Procurement_Service-1.jpg"
+              src="https://res.cloudinary.com/sumipol/image/upload/v1685075814/sumipol-web-image/Procurement_Service-1_psihdw.jpg"
               alt="machining"
               titleDetail="เครื่องมือตัดแต่งขึ้นรูปโลหะ"
               details="เครื่องมือตัดสำหรับงานกลึง กัด เจาะ ต๊าปเกลียว ทุกประเภท
@@ -78,7 +78,7 @@ export default function Products() {
             />
             <PostGrids
               title="MACHINING"
-              src="/home/products/Procurement_Service-1.jpg"
+              src="https://res.cloudinary.com/sumipol/image/upload/v1685075814/sumipol-web-image/Procurement_Service-1_psihdw.jpg"
               alt="machining"
               titleDetail="เครื่องมือตัดแต่งขึ้นรูปโลหะ"
               details="เครื่องมือตัดสำหรับงานกลึง กัด เจาะ ต๊าปเกลียว ทุกประเภท
@@ -87,7 +87,7 @@ export default function Products() {
             />
             <PostGrids
               title="MACHINING"
-              src="/home/products/Procurement_Service-1.jpg"
+              src="https://res.cloudinary.com/sumipol/image/upload/v1685075814/sumipol-web-image/Procurement_Service-1_psihdw.jpg"
               alt="machining"
               titleDetail="เครื่องมือตัดแต่งขึ้นรูปโลหะ"
               details="เครื่องมือตัดสำหรับงานกลึง กัด เจาะ ต๊าปเกลียว ทุกประเภท
@@ -97,6 +97,6 @@ export default function Products() {
           </div>
         </div>
       </Sections>
-    </div>
+    </section>
   );
 }

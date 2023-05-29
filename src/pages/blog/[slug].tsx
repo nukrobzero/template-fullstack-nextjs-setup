@@ -26,19 +26,16 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
   return (
     <div>
       <Layout>
-        <div>
-          <Headers content={blogPost.metaDescription} title={blogPost.title} />
-        </div>
-        <div className="mt-[80px] max-w-[1920px] mx-auto">
-          <div className="h-auto">
-            <Image
-              src={`/blogs/hero_banner.jpg`}
-              width={1920}
-              height={350}
-              alt="hero_Banner"
-              className="w-full h-[250px] object-center object-cover"
-            />
-          </div>
+        <Headers content={blogPost.metaDescription} title={blogPost.title} />
+        <div className="max-w-full mx-auto">
+          <div
+            className="h-60 md:h-[250px]"
+            style={{
+              backgroundImage: `url("https://res.cloudinary.com/sumipol/image/upload/v1685086107/sumipol-web-image/hero_banner_xsrgro.webp")`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+            }}
+          ></div>
           <article>
             <div className="xl:max-w-screen-2xl md:max-w-screen-xl sm:max-w-screen-sm flex flex-wrap items-center mx-auto p-4">
               <div className="flex flex-col lg:flex-row mx-auto">
@@ -75,6 +72,7 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
                   <div>
                     <h1 className="text-4xl font-bold">{blogPost.title}</h1>
                     <div
+                      //@ts-ignore
                       dangerouslySetInnerHTML={{ __html: blogPost.content }}
                     ></div>
                   </div>
@@ -146,7 +144,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     },
   });
 
-  const paths = blogPosts.map((blog) => ({
+  const paths = blogPosts.map((blog: any) => ({
     params: { slug: blog.slug.toString() },
   }));
 

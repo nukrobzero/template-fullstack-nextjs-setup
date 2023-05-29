@@ -3,10 +3,10 @@ import ImageSlider from "./imageSlide";
 
 export default function Partners() {
   return (
-    <div>
+    <section className="max-w-screen-2xl mx-auto h-52 mt-12 flex items-center justify-center">
       <Sections>
         <ImageSlider />
       </Sections>
-    </div>
+    </section>
   );
 }

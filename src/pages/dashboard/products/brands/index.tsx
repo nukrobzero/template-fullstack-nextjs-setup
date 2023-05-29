@@ -3,16 +3,16 @@ import { prisma } from "@/lib/prismadb";
 import TableDefault from "@/components/backend/tables/table_default";
 
 interface Props {
-  category: any;
+  brands: any;
 }
 
-export default function ProductsCategory({ category }: Props) {
+export default function ProductsBrands({ brands }: Props) {
   return (
     <TableDefault
-      apiurl={`/api/dashboard/products/category`}
-      linkURL={`/dashboard/products/category`}
-      page={category}
-      pageTitle="Products Category"
+      apiurl={`/api/dashboard/products/brands`}
+      linkURL={`/dashboard/products/brands`}
+      page={brands}
+      pageTitle="Products Brands"
       showCategory={false}
       showStatus={false}
     />
@@ -20,7 +20,7 @@ export default function ProductsCategory({ category }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await prisma.categoryProducts.findMany({
+  const res = await prisma.brandProducts.findMany({
     select: {
       id: true,
       title: true,
@@ -31,8 +31,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
       createdAt: "desc",
     },
   });
-  const category = JSON.parse(JSON.stringify(res));
+  const brands = JSON.parse(JSON.stringify(res));
   return {
-    props: { category },
+    props: { brands },
   };
 };

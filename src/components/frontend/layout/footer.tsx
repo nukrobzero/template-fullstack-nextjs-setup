@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col justify-center md:w-[700px]">
           <div className="py-4">
             <Image
-              src={`/footer/Logo-Sumipol-Agile-white.png`}
+              src={`https://res.cloudinary.com/sumipol/image/upload/v1685073276/sumipol-web-image/Logo-Sumipol-Agile-white_1_cwptfz.png`}
               width={100}
               height={100}
               alt="ft-logo"

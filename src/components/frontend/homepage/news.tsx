@@ -5,9 +5,9 @@ import Link from "next/link";
 
 const NewsHome: NextPage = () => {
   return (
-    <div className="bg-[#F4F4F4]">
+    <section className="bg-[#F4F4F4] max-w-full mx-auto">
       <Sections>
-        <div className="w-full flex flex-col justify-center text-center pt-12 mx-auto">
+        <div className="w-full flex flex-col justify-center text-center py-12 mx-auto">
           <div className="flex flex-row justify-between">
             <h1 className="text-2xl md:text-3xl font-bold">
               News & <span className="text-[#0083CA]">Activities</span>
@@ -24,7 +24,7 @@ const NewsHome: NextPage = () => {
               <div className="flex flex-row justify-center items-center space-x-2">
                 <div className="flex flex-row justify-center items-center">
                   <Image
-                    src={`/home/news/News-Highlight.jpg`}
+                    src={`https://res.cloudinary.com/sumipol/image/upload/v1685078031/sumipol-web-image/News-Highlight_eidovt.webp`}
                     width={800}
                     height={400}
                     alt="news1"
@@ -51,7 +51,7 @@ const NewsHome: NextPage = () => {
               <div className="flex flex-row justify-center items-center space-x-2">
                 <div className="flex flex-row justify-center items-center">
                   <Image
-                    src={`/home/news/News-Highlight.jpg`}
+                    src={`https://res.cloudinary.com/sumipol/image/upload/v1685078031/sumipol-web-image/News-Highlight_eidovt.webp`}
                     width={800}
                     height={400}
                     alt="news1"
@@ -78,7 +78,7 @@ const NewsHome: NextPage = () => {
               <div className="flex flex-row justify-center items-center space-x-2">
                 <div className="flex flex-row justify-center items-center">
                   <Image
-                    src={`/home/news/News-Highlight.jpg`}
+                    src={`https://res.cloudinary.com/sumipol/image/upload/v1685078031/sumipol-web-image/News-Highlight_eidovt.webp`}
                     width={800}
                     height={400}
                     alt="news1"
@@ -106,7 +106,7 @@ const NewsHome: NextPage = () => {
             <div className="flex flex-col justify-center items-center shadow-2xl my-8 md:!max-w-392px">
               <div className="object-cover md:w-[392px] md:h-[305px]">
                 <Image
-                  src={`/home/news/News-Highlight.jpg`}
+                  src={`https://res.cloudinary.com/sumipol/image/upload/v1685078031/sumipol-web-image/News-Highlight_eidovt.webp`}
                   width={800}
                   height={400}
                   alt="news1"
@@ -132,7 +132,7 @@ const NewsHome: NextPage = () => {
           </div>
         </div>
       </Sections>
-    </div>
+    </section>
   );
 };
 

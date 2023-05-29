@@ -3,9 +3,9 @@ import Image from "next/image";
 
 export default function ContactHome() {
   return (
-    <div className="max-w-[1920px] mx-auto h-[340px] xl:h-[680px] relative bg-no-repeat bg-left">
+    <div className="max-w-full mx-auto h-[340px] xl:h-[680px] relative bg-no-repeat bg-left">
       <Image
-        src={`/home/contact-us/bg-img.jpg`}
+        src={`https://res.cloudinary.com/sumipol/image/upload/v1685081765/sumipol-web-image/bg-img_azhneb.jpg`}
         width={1440}
         height={600}
         alt="bg"

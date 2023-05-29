@@ -10,104 +10,28 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name           String?
-  image          String?
-  email          String?   @unique
-  emailVerified  DateTime?
-  hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  sessions       Session[]
-  account        Account[]
-}
-
-// Necessary for Next auth
-model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String? @db.ObjectId
-  type              String
-  provider          String
-  providerAccountId String?
-  refresh_token     String? @db.String
-  access_token      String? @db.String
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.String
-  session_state     String?
-  user              User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-}
-
-model Session {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String   @unique
-  userId       String?  @db.ObjectId
-  expires      DateTime
-  user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model VerificationToken {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
-// model Services {
-//   id                 String               @id @default(auto()) @map("_id") @db.ObjectId
-//   machiningSolutions MachiningSolutions[]
-// }
-
-// model MachiningSolutions {
-//   id                        String                      @id @default(auto()) @map("_id") @db.ObjectId
-//   servicesID                String                      @db.ObjectId
-//   title                     String
-//   slug                      String
-//   description               String
-//   machiningSolutionsImage   MachiningSolutionsImage[]
-//   machiningSolutionsContent MachiningSolutionsContent[]
-//   metaDescription           String
-//   keyword                   String
-//   createdAt                 DateTime                    @default(now())
-//   services                  Services?                   @relation(fields: [servicesID], references: [id], onDelete: Cascade)
-// }
-
-// model MachiningSolutionsImage {
-//   id                   String              @id @default(auto()) @map("_id") @db.ObjectId
-//   machiningSolutionsID String              @db.ObjectId
-//   title                String
-//   description          String
-//   coverImage           String
-//   createdAt            DateTime            @default(now())
-//   machiningSolutions   MachiningSolutions? @relation(fields: [machiningSolutionsID], references: [id], onDelete: Cascade)
-// }
-
-// model MachiningSolutionsContent {
-//   id                   String              @id @default(auto()) @map("_id") @db.ObjectId
-//   machiningSolutionsId String?             @db.ObjectId
-//   content              String?
-//   url                  String?
-//   MachiningSolutions   MachiningSolutions? @relation(fields: [machiningSolutionsId], references: [id])
-// }
-
-model Category {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+model CategoryProducts {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
   slug        String
   title       String
   description String
-  createdAt   DateTime @default(now())
-  Blogs       Blogs[]
+  createdAt   DateTime   @default(now())
+  products    Products[]
 }
 
-model Blogs {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  categoryId  String?   @db.ObjectId
+model BrandProducts {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String
+  title       String
+  description String
+  createdAt   DateTime   @default(now())
+  products    Products[]
+}
+
+model Products {
+  id          String            @id @default(auto()) @map("_id") @db.ObjectId
+  categoryId  String?           @db.ObjectId
+  brandId     String?           @db.ObjectId
   title       String
   slug        String
   coverImage  String
@@ -116,8 +40,33 @@ model Blogs {
   keywords    String
   date        String
   status      String
-  createdAt   DateTime  @default(now())
-  Category    Category? @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime          @default(now())
+  category    CategoryProducts? @relation(fields: [categoryId], references: [id])
+  brand       BrandProducts?    @relation(fields: [brandId], references: [id])
+}
+
+model CategoryBlogs {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  blogs       Blogs[]
+}
+
+model Blogs {
+  id          String         @id @default(auto()) @map("_id") @db.ObjectId
+  categoryId  String?        @db.ObjectId
+  title       String
+  slug        String
+  coverImage  String
+  content     String?
+  description String
+  keywords    String
+  date        String
+  status      String
+  createdAt   DateTime       @default(now())
+  category    CategoryBlogs? @relation(fields: [categoryId], references: [id])
 }
 
 model News {

@@ -12,6 +12,7 @@ export default async function handler(
   if (!session) {
     return res.status(401).json({ message: "Unauthorized." });
   }
+
   if (req.method === "POST") {
     try {
       const {
@@ -85,6 +86,12 @@ export default async function handler(
       return res.status(500).json({ message: "Something went wrong." });
     }
   } else if (req.method === "DELETE") {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
     try {
       const { id } = req.query;
 

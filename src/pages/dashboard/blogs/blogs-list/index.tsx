@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       createdAt: true,
       slug: true,
       status: true,
-      Category: {
+      category: {
         select: {
           title: true,
         },

@@ -15,7 +15,7 @@ export default async function handler(
     try {
       const { title, description } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      const response = await prisma.categoryBlogs.create({
+      const response = await prisma.brandProducts.create({
         data: {
           title: title as string,
           slug: slug as string,
@@ -30,7 +30,7 @@ export default async function handler(
     try {
       const { id, title, description } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      const response = await prisma.categoryBlogs.update({
+      const response = await prisma.brandProducts.update({
         where: {
           id,
         },
@@ -47,23 +47,23 @@ export default async function handler(
   } else if (req.method === "DELETE") {
     try {
       const { id } = req.query;
-      const category = await prisma.categoryBlogs.findUnique({
+      const brand = await prisma.brandProducts.findUnique({
         where: {
           id: id as string,
         },
       });
 
-      if (!category) {
-        return res.status(404).json({ message: "category not found." });
+      if (!brand) {
+        return res.status(404).json({ message: "brand not found." });
       }
 
-      const deleteCategory = await prisma.categoryBlogs.delete({
+      const deletebrand = await prisma.brandProducts.delete({
         where: {
           id: id as string,
         },
       });
 
-      res.status(200).json(deleteCategory);
+      res.status(200).json(deletebrand);
     } catch (e) {
       res.status(500).json({ message: "Something went wrong." });
     }

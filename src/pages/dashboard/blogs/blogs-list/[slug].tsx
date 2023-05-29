@@ -15,13 +15,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
   const pages = await prisma.blogs.findMany({
     include: {
-      Category: true,
+      category: true,
     },
   });
   const findPage = pages.find((page: any) => page.slug.toString() === slug);
   const blog = JSON.parse(JSON.stringify(findPage));
 
-  const categorys = await prisma.category.findMany();
+  const categorys = await prisma.categoryBlogs.findMany();
   const category = JSON.parse(JSON.stringify(categorys));
   return {
     props: { blog, category },

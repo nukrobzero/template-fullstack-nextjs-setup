@@ -1,5 +1,3 @@
-"use client";
-
 import Headers from "@/components/headerAllpage";
 import Hero from "@/components/frontend/homepage/hero";
 import ServiceHero from "@/components/frontend/homepage/services";

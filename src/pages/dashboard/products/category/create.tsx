@@ -4,6 +4,14 @@ interface Props {
   page: any;
 }
 
-export default function CreateCategory({ page }: Props) {
-  return <FormCategory page={page} type="Create" />;
+export default function CreateProductsCategory({ page }: Props) {
+  return (
+    <FormCategory
+      page={page}
+      apiUrl="/api/dashboard/products/category"
+      linkUrl="/dashboard/products/category"
+      titleHead="Products Category"
+      type="Create"
+    />
+  );
 }

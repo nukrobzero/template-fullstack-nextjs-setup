@@ -15,7 +15,7 @@ export default async function handler(
     try {
       const { title, description } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      const response = await prisma.categoryBlogs.create({
+      const response = await prisma.categoryProducts.create({
         data: {
           title: title as string,
           slug: slug as string,
@@ -30,7 +30,7 @@ export default async function handler(
     try {
       const { id, title, description } = req.body;
       const slug = title.replace(/\s+/g, "-").toLowerCase();
-      const response = await prisma.categoryBlogs.update({
+      const response = await prisma.categoryProducts.update({
         where: {
           id,
         },
@@ -47,7 +47,7 @@ export default async function handler(
   } else if (req.method === "DELETE") {
     try {
       const { id } = req.query;
-      const category = await prisma.categoryBlogs.findUnique({
+      const category = await prisma.categoryProducts.findUnique({
         where: {
           id: id as string,
         },
@@ -57,7 +57,7 @@ export default async function handler(
         return res.status(404).json({ message: "category not found." });
       }
 
-      const deleteCategory = await prisma.categoryBlogs.delete({
+      const deleteCategory = await prisma.categoryProducts.delete({
         where: {
           id: id as string,
         },

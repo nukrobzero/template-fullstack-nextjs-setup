@@ -1,28 +1,23 @@
-"use client";
-
 import Layout from "@/components/frontend/layout/layout";
 import Headers from "@/components/headerAllpage";
 import Sections from "@/components/layoutpage";
-import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export default function Careers() {
   return (
     <Layout>
-      <div>
-        <Headers title="Careers Page" content="Careers Page" />
-      </div>
-      <div className="mt-[80px] max-w-[1920px] mx-auto">
-        <div>
-          <Image
-            src={`/careers/bg-hero-careers.jpg`}
-            width={1920}
-            height={400}
-            alt="hero_Banner"
-            className="absolute -z-10 h-[500px] object-center object-cover"
-          />
-          <div className="relative max-w-screen-xl flex flex-col justify-center items-start w-auto h-[500px] mx-auto p-4 text-start text-white">
+      <Headers title="Careers Page" content="Careers Page" />
+      <div className="max-w-full mx-auto">
+        <div
+          className="h-60 md:h-[350px]"
+          style={{
+            backgroundImage: `url("https://res.cloudinary.com/sumipol/image/upload/v1685089685/sumipol-web-image/bg-hero-careers_pleeih.webp")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="max-w-screen-xl mx-auto flex flex-col items-start justify-center p-4 h-60 md:h-[350px] text-slate-100">
             <h1 className="xl:text-3xl md:text-2xl sm:text-xl text-lg font-bold">
               Careers
             </h1>

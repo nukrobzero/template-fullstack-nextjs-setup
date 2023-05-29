@@ -158,7 +158,7 @@ export default function TableDefault({
                       {data.title}
                     </th>
                     {showCategorys && (
-                      <td className="px-6 py-4">{data.Category.title}</td>
+                      <td className="px-6 py-4">{data.category.title}</td>
                     )}
                     {showStatuss && (
                       <td className="px-6 py-4">{data.status}</td>

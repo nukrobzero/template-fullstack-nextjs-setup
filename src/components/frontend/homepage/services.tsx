@@ -1,21 +1,18 @@
-import Image from "next/image";
 import Sections from "../../layoutpage";
 import ItemsServices from "./items-image-services";
 
 export default function ServiceHero() {
   return (
-    <div className="max-w-[1920px] mx-auto">
-      <div className="absolute -z-10">
-        <Image
-          src={`/home/services/Rectangle-51.png`}
-          width={1920}
-          height={1080}
-          alt="bg-service-solutons"
-          className="object-cover h-[1090px] md:h-[640px] xl:h-[430px]"
-        />
-      </div>
+    <section
+      className="max-w-screen-2xl mx-auto"
+      style={{
+        background: `url("https://res.cloudinary.com/sumipol/image/upload/v1685074493/sumipol-web-image/Rectangle-51_urewej.webp")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       <Sections>
-        <div className="mx-auto flex flex-col justify-center items-center py-8 space-y-8">
+        <div className="flex flex-col md:h-[400px] justify-center items-center space-y-8 py-4 md:py-0">
           <div className="text-center space-y-4">
             <h3 className=" uppercase text-[#0083CA] font-bold text-sm">
               SOLUTIONS
@@ -33,22 +30,22 @@ export default function ServiceHero() {
           <div className="flex flex-col justify-center items-center">
             <div className="grid md:grid-cols-4 grid-cols-1 gap-4 lg:gap-12 justify-center items-center">
               <ItemsServices
-                src="/home/services/Icon-Solution-01.png"
+                src="https://res.cloudinary.com/sumipol/image/upload/v1685074745/sumipol-web-image/Icon-Solution-01_gwoach.webp"
                 alt="MACHINING SOLUTIONS"
                 title="MACHINING SOLUTIONS"
               />
               <ItemsServices
-                src="/home/services/Icon-Solution-02.png"
+                src="https://res.cloudinary.com/sumipol/image/upload/v1685074745/sumipol-web-image/Icon-Solution-02_yr30la.webp"
                 alt="MEASURING SOLUTIONS"
                 title="MEASURING SOLUTIONS"
               />
               <ItemsServices
-                src="/home/services/Icon-Solution-04.png"
+                src="https://res.cloudinary.com/sumipol/image/upload/v1685074745/sumipol-web-image/Icon-Solution-04_gelyss.webp"
                 alt="SMART MANUFACTURING SOLUTIONS"
                 title="SMART MANUFACTURING SOLUTIONS"
               />
               <ItemsServices
-                src="/home/services/Icon-Solution-03.png"
+                src="https://res.cloudinary.com/sumipol/image/upload/v1685074745/sumipol-web-image/Icon-Solution-03_zf8dds.webp"
                 alt="MAINTENANCE REPAIR OPERATION SOLUTIONS"
                 title="MAINTENANCE REPAIR OPERATION SOLUTIONS"
               />
@@ -56,6 +53,6 @@ export default function ServiceHero() {
           </div>
         </div>
       </Sections>
-    </div>
+    </section>
   );
 }

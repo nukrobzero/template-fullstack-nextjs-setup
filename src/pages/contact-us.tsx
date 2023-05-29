@@ -1,5 +1,3 @@
-"use client";
-
 import Layout from "@/components/frontend/layout/layout";
 import Headers from "@/components/headerAllpage";
 import Sections from "@/components/layoutpage";
@@ -10,25 +8,17 @@ import { FaFacebookSquare, FaTwitter } from "react-icons/fa";
 export default function ContactUs() {
   return (
     <Layout>
-      <div>
-        <Headers title="Careers Page" content="Careers Page" />
-      </div>
-      <div
-        className="mt-[80px] max-w-[1920px] mx-auto"
-        style={{
-          background: `rgba(0, 0, 0, 0.6)`,
-          backgroundBlendMode: "multiply",
-        }}
-      >
-        <div>
-          <Image
-            src={`/contact/bg-hero-contact.jpg`}
-            width={1920}
-            height={400}
-            alt="hero_Banner"
-            className="absolute -z-10 h-[500px] object-center object-cover"
-          />
-          <div className="relative max-w-screen-xl flex flex-col justify-center items-start w-auto h-[500px] mx-auto p-4 text-start text-white">
+      <Headers title="Careers Page" content="Careers Page" />
+      <div className="max-w-full mx-auto">
+        <div
+          className="h-60 md:h-[400px]"
+          style={{
+            backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("https://res.cloudinary.com/sumipol/image/upload/v1685328347/sumipol-web-image/bg-hero-contact_ytnu2a.webp")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div className="max-w-screen-xl mx-auto flex flex-col items-start justify-center p-4 h-60 md:h-[400px] text-slate-100">
             <h1 className="xl:text-3xl md:text-2xl sm:text-xl text-lg font-bold">
               Contacts
             </h1>
