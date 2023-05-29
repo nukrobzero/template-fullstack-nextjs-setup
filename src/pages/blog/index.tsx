@@ -90,7 +90,7 @@ export default function Blogs({ blogs }: Props) {
                         <rect x="4" width="6" height="6" fill="#D9D9D9" />
                       </svg>
                       <h1 className="text-sm font-bold uppercase text-[#0083CA] my-2">
-                        {data.Category.title}
+                        {data.category.title}
                       </h1>
                     </div>
                     <Link
@@ -122,7 +122,7 @@ export const getStaticProps: GetStaticProps = async () => {
       title: true,
       slug: true,
       status: true,
-      Category: {
+      category: {
         select: {
           title: true,
         },

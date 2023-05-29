@@ -12,7 +12,7 @@ export default function CreateProduct({ page, category }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await prisma.category.findMany();
+  const res = await prisma.categoryProducts.findMany();
   const category = JSON.parse(JSON.stringify(res));
   return {
     props: { category },

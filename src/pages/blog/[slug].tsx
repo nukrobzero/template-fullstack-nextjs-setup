@@ -63,7 +63,7 @@ export default function Blog({ blogPost, category, recentPost }: Props) {
                         <rect y="3" width="6" height="6" fill="#0083CA" />
                         <rect x="4" width="6" height="6" fill="#D9D9D9" />
                       </svg>
-                      {blogPost.Category.title}
+                      {blogPost.category.title}
                     </span>
                     <span>
                       <FaFacebookSquare size={30} />
@@ -166,7 +166,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
       description: true,
       title: true,
       slug: true,
-      Category: {
+      category: {
         select: {
           title: true,
         },
@@ -175,7 +175,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   });
   const blogPost = JSON.parse(JSON.stringify(response));
 
-  const resCategory = await prisma.category.findMany({
+  const resCategory = await prisma.categoryBlogs.findMany({
     select: {
       id: true,
       title: true,
